@@ -402,8 +402,7 @@ class Vendor_model extends CI_Model
 										FROM locations
 										WHERE location='".$data['location']."' AND id!=$id"
 								);
-		$check_array = $query->row_array();
-		print_r($check_array);exit;
+		$check_array = $query->row_array(); 
 		if($check_array['cnt']>0){
 			return 0;
 		}else{

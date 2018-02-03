@@ -710,7 +710,7 @@ class Vendor extends CI_Controller
             }
 			$id = $this->input->post('location_id');
 			$user_info['location'] = $this->input->post('location');
-			$result = $this->Vendor_model->update_location($user_info, $id);
+			$result = $this->Vendor_model->update_location($user_info, $id); 
 			if ($result > 0) {
 				$this->success('<p class="success">Location has been updated successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#location');
