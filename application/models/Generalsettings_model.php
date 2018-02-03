@@ -670,18 +670,19 @@ class Generalsettings_model extends CI_Model
 		$return_array = $query->result_array();
 		return $return_array;	
 	}
+
 	function get_finiancialyr(){
 		$pst = date('m');
 		if($pst>4) {
 			$y=date('Y');
-			$dtt=$y."-04-01<br/>";
+			$dtt=$y."-04-01";
 			$pt = date('Y', strtotime('+1 year'));
 			$ptt=$pt."-03-31";
 			$date=array('startdate' => $dtt , 'enddate' => $ptt);
 			return  $date;
 		}else {
 			$y=date('Y', strtotime('-1 year'));
-			$dtt=$y."-04-01<br/>";
+			$dtt=$y."-04-01";
 			$pt =date('Y');
 			$ptt=$pt."-03-31";
 			$date=array('startdate' => $dtt , 'enddate' => $ptt);
