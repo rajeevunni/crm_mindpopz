@@ -694,6 +694,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Location has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#location');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate value is not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#location');
+				exit;
 			}
 		}
 		if(isset($_POST['edit_location']))
@@ -711,6 +715,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Location has been updated successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#location');
 				exit;					
+			}else{
+				$this->error('<p class="error">This entry already exists</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#location');
+				exit;
 			}
 		}
 
@@ -728,6 +736,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Vendor Type has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#type');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate entry is not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#type');
+				exit;
 			}
 		}
 		if(isset($_POST['add_reference']))
@@ -744,6 +756,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Reference has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#reference');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate entry is not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#reference');
+				exit;
 			}
 		}
 		if(isset($_POST['edit_reference']))
@@ -778,6 +794,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Vehicle Type has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#vehicle');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate entry not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#vehicle');
+				exit;
 			}
 		}
 		// adding vendor category
@@ -795,6 +815,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Vendor Category has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#category');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate entry not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#category');
+				exit;
 			}
 		}
 		
@@ -812,6 +836,10 @@ class Vendor extends CI_Controller
 				$this->success('<p class="success">Enquiry status has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#status');
 				exit;					
+			}else{
+				$this->error('<p class="error">Duplicate entry not allowed</p>');
+				redirect($_SERVER['HTTP_REFERER'].'#status');
+				exit;
 			}
 		}
 

@@ -175,9 +175,18 @@ class Vendor_model extends CI_Model
 	}
 	function create_reference($data)
 	{
-		$this->db->insert('reference',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM reference
+										WHERE reference_name='".$data['reference_name']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('reference',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;
+		}	
 	}
 	function getall_reference($condition)
 	{
@@ -292,9 +301,18 @@ class Vendor_model extends CI_Model
 	//New table created for add location
 	function create_location($data)
 	{
-		$this->db->insert('locations',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM locations
+										WHERE location='".$data['location']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('locations',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;	
+		}
 	}
 	
 	//fetching the location details
@@ -311,16 +329,34 @@ class Vendor_model extends CI_Model
 	//adding vendor_type
 	function create_vendor_type($data)
 	{
-		$this->db->insert('vendor_type',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM vendor_type
+										WHERE type_name='".$data['type_name']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('vendor_type',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;	
+		}
 	}
 	//adding vehicle type
 	function create_vehicle_type($data)
 	{
-		$this->db->insert('vehicle_type',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM vehicle_type
+										WHERE vehicle_type='".$data['vehicle_type']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('vehicle_type',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;	
+		}
 	}
 	//fetching vehicle_type
 	function getall_vehicle_type($condition)
@@ -336,9 +372,18 @@ class Vendor_model extends CI_Model
 	//adding vendor category
 	function create_vendor_category($data)
 	{
-		$this->db->insert('vendor_category',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM vendor_category
+										WHERE category_name='".$data['category_name']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('vendor_category',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;	
+		}
 	}
 
 	function getinduidual_location($condition)
@@ -353,11 +398,20 @@ class Vendor_model extends CI_Model
 
 	function update_location($data,$id)
 	{
-		$this->db->where('id', $id);
-		$this->db->update('locations', $data);
-		$result=$this->db->affected_rows();	
-		
-		return $result;
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM locations
+										WHERE location='".$data['location']."' AND id!=$id"
+								);
+		$check_array = $query->row_array();
+		print_r($check_array);exit;
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->where('id', $id);
+			$this->db->update('locations', $data);
+			$result=$this->db->affected_rows();	
+			return $result;
+		}
 	}
 	
 	function getinduidual_vendor_type($condition)
@@ -415,9 +469,18 @@ class Vendor_model extends CI_Model
 
 	function create_enquiry($data)
 	{
-		$this->db->insert('enquiry_status',$data);
-		$return_value=$this->db->insert_id();
-		return $return_value;	
+		$query = $this->db->query("SELECT count(1) as cnt 
+										FROM enquiry_status
+										WHERE enquiry_status='".$data['enquiry_status']."'"
+								);
+		$check_array = $query->row_array();
+		if($check_array['cnt']>0){
+			return 0;
+		}else{
+			$this->db->insert('enquiry_status',$data);
+			$return_value=$this->db->insert_id();
+			return $return_value;	
+		}
 	}
 
 	function getinduidual_enquiry_status($condition)
