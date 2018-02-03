@@ -670,11 +670,34 @@ class Generalsettings_model extends CI_Model
 		$return_array = $query->result_array();
 		return $return_array;	
 	}
+	function get_finiancialyr(){
+		$pst = date('m');
+		if($pst>4) {
+			$y=date('Y');
+			$dtt=$y."-04-01<br/>";
+			$pt = date('Y', strtotime('+1 year'));
+			$ptt=$pt."-03-31";
+			$date=array('startdate' => $dtt , 'enddate' => $ptt);
+			return  $date;
+		}else {
+			$y=date('Y', strtotime('-1 year'));
+			$dtt=$y."-04-01<br/>";
+			$pt =date('Y');
+			$ptt=$pt."-03-31";
+			$date=array('startdate' => $dtt , 'enddate' => $ptt);
+			return  $date;
+		}
+	}
+
 
 	function get_company_wise_barchart()
 	{
+
+
+		$date= $this->get_finiancialyr();
 		$query = $this->db->query("SELECT SUM(booking_amount) as sum, YEAR(`booking_date`) as y, MONTH(`booking_date`) as m, COUNT(booking_amount) as total
 									FROM `guest_enquiry`
+									WHERE booking_date BETWEEN '".$date['startdate']."' AND '".$date['enddate']."'
 									GROUP BY YEAR(`booking_date`), MONTH(`booking_date`) 
 									HAVING SUM(`booking_date`)>0 AND SUM(`booking_amount`)>0
 									ORDER BY `booking_date` DESC"
