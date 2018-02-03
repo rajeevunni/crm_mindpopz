@@ -19,7 +19,7 @@ $this->load->view('includes/head');
         <div class="col-md-6 col-sm-6 col-xs-12" >
             <div class="x_panel">
                 <div class="x_title">
-                    <h2> <i class="fa fa-bars"></i>&nbsp; Company Wise Deal Details</h2>
+                    <h2> <i class="fa fa-bar-chart"></i>&nbsp; Company Wise Deal Details</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -30,7 +30,7 @@ $this->load->view('includes/head');
         <div class="col-md-6 col-sm-6 col-xs-12" >
             <div class="x_panel">
                 <div class="x_title">
-                    <h2> <i class="fa fa-bars"></i>&nbsp; CRM Wise Deal Details</h2>
+                    <h2> <i class="fa fa-line-chart"></i>&nbsp; CRM Wise Deal Details</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
