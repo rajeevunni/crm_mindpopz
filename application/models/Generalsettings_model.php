@@ -692,8 +692,6 @@ class Generalsettings_model extends CI_Model
 
 	function get_company_wise_barchart()
 	{
-
-
 		$date= $this->get_finiancialyr();
 		$query = $this->db->query("SELECT SUM(booking_amount) as sum, YEAR(`booking_date`) as y, MONTH(`booking_date`) as m, COUNT(booking_amount) as total
 									FROM `guest_enquiry`
