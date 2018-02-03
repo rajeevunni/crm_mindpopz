@@ -46,6 +46,8 @@
                     <option value="">Select Food Plan</option>
                     <option value="MAP" <?php if($accom_details['food_plan'] == 'MAP'){echo "selected";}?>>MAP</option>
                     <option value="CP" <?php if($accom_details['food_plan'] == 'CP'){echo "selected";}?>>CP</option>
+                    <option value="AP" <?php if($accom_details['food_plan'] == 'AP'){echo "selected";}?>>AP</option>
+                    <option value="EP" <?php if($accom_details['food_plan'] == 'EP'){echo "selected";}?>>EP</option>
                 </select>
                 <!-- <input class="form-control"  value="<?php echo $accom_details['food_plan']; ?>"  name="food_plan" id="food_plan" placeholder="Enetr Food Plan" type="text"> -->
                 <!-- <div id="error_edcontact_no2 " class="val__msgbx"></div> -->
