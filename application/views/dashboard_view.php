@@ -11,7 +11,7 @@ $this->load->view('includes/head');
     <div class="page-title">
         <div class="title_left" style="width: 15%;" >
             <h3> Dashboard </h3>
-        </div>
+        </div> 
     </div> 
     <br/><br/><br/>
     <div class="clearfix"></div>
