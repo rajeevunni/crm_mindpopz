@@ -177,7 +177,7 @@ class Guest extends CI_Controller
 			if($this->input->post('number_of_days') < $this->input->post('number_of_nights'))
 			{
 				$this->error('<p class="error">No of days should be greater than nights</p>');
-				redirect('$_SERVER['HTTP_REFERER'].'#number_of_nights');
+				redirect($_SERVER['HTTP_REFERER'].'#number_of_nights');
 			}
 
 
