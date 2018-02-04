@@ -70,7 +70,6 @@
                             <th>Guest Name</th>
                             <th>CRM</th>
                             <th>Email</th>
-                            <th>Mobile</th>
                             <th>Reference</th>
                             <th>Status</th>
                             <?php 
@@ -97,7 +96,6 @@
                             <td><?php echo $details['guest_name']; ?></td>
                             <td><?php echo $details['crm_name'];?></td>
                             <td><?php echo $details['guest_email']; ?></td>
-                            <td><?php echo $details['guest_mobile']; ?></td>
                             <td><?php echo $details['enquiry_reference'];?></td>
                             <td><?php echo $details['enquiry_status'];?></td>
                             <?php 
