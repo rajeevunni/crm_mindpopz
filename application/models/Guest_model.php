@@ -25,6 +25,15 @@ class Guest_model extends CI_Model
 		return $return_array;	
 	}
 
+	function getcrmidfromname($crmname)
+	{
+		$query = $this->db->query("SELECT id
+										FROM  employee
+										WHERE CONCAT(f_name,' ',l_name)='".$crmname."'"
+		);
+		$return_array = $query->row_array();
+		return $return_array;
+	}
 
 	// to insert the guest details.
 	function create_guest($data)

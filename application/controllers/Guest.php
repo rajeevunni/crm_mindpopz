@@ -584,6 +584,12 @@ class Guest extends CI_Controller
 
             foreach ($employee as $emp) 
             {
+            	$crmid= $this->Guest_model->getcrmidfromname($emp['enquiry_crm']);
+            	if(empty($crmid['id'])){
+            		$this->error('<p class="error">COuld not find CRM with this name</p>');
+		            redirect(base_url().'index.php/Guest/search_guest_enquiry');
+		            exit;
+            	}
                 $guest_info['enquiry_date'] = $emp['enquiry_date'];
                 $guest_info['guest_details_ref'] = $emp['guest_details_ref'];
                 $guest_info['guest_enquiry_ref'] = $emp['guest_enquiry_ref'];
@@ -593,7 +599,7 @@ class Guest extends CI_Controller
                 $guest_info['guest_city'] = $emp['guest_city'];
                 $guest_info['enquiry_reference'] = $emp['enquiry_reference'];
                 $guest_info['enquiry_ext_rfn_no'] = $emp['enquiry_ext_rfn_no'];
-                $guest_info['enquiry_crm'] = $emp['enquiry_crm'];
+                $guest_info['enquiry_crm'] = $crmid['id'];
                 $guest_info['enquiry_remarks'] = $emp['enquiry_remarks'];
                 $guest_info['enquiry_status'] = $emp['enquiry_status'];
                 $guest_info['booking_date'] = $emp['booking_date'];
