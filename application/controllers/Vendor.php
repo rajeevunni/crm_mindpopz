@@ -89,7 +89,7 @@ class Vendor extends CI_Controller
 		// loading category view page 
 		$this->load->view('add_vendor_view',$show_data);	
 	}
-	function edit_vendor_details($id)
+	function edit_vendor_details($id=null)
 	{
 		if(isset($_POST['update_vendor_details']))
 		{
