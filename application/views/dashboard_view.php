@@ -143,24 +143,6 @@ $this->load->view('includes/head');
         resize: true,
         redraw: true
     });
-
-    /*Morris.Bar({
-        element: 'crm_wise',
-        data: <?php echo $CrmData; ?>,
-        lineColors:['#ED5D5D'],
-        xkey: 'xparameter',
-        ykeys: 'name',
-        labels: 'CRM',
-        // barRatio: 0.4,
-        barColors: ['#3980B5'],
-        xLabelAngle: 0,
-        // ymax:180,
-        xLabelAngle: 60,
-        hideHover: 'auto',
-        // stacked: true,
-        resize: true,
-        redraw: true
-    });*/
  Morris.Line({
   element: 'crm_wise',
   data: <?php echo $CrmData; ?>,
@@ -169,34 +151,6 @@ $this->load->view('includes/head');
   labels: <?php echo $CrmDataName; ?>
 });
 
-
-    // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    // Morris.Area({
-    //     element: 'graph_area1',
-    //     hideHover: 'auto',
-    //     resize: true,
-    //     lineColors: ['#3980B5', '#26B99A'],
-    //     data: <?php //echo $line_chart; ?>,
-    //     xkey: 'm',
-    //     ykeys: ['a', 'b'],
-    //     labels: ['Resolved Tickets', 'Total Tickets'],
-    //     // ymax:140,
-    //     xLabelFormat: function(x) { // <--- x.getMonth() returns valid index
-    //         var month = months[x.getMonth()];
-    //         return month;
-    //     },
-    //     dateFormat: function(x) {
-    //         var month = months[new Date(x).getMonth()];
-    //         return month;
-    //     },
-    // });
-
-    // Morris.Donut({
-    //     element: 'graph_donut1',
-    //     colors: ['#ACADAC', '#3498DB', '#DD3233 ', '#26B99A', '#E7701F'],
-    //     data: <?php //echo $donut_chart_ticket_status; ?>
-        
-    // });
 
 </script>
 
