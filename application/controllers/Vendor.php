@@ -20,7 +20,7 @@ class Vendor extends CI_Controller
 		date_default_timezone_set("Asia/Kolkata");		// set the default time zone.
     }
 
-    function index()
+    function index() 
 	{	
 		$show_data = array();	
 		$show_data['error']=$this->session->userdata('error');
