@@ -92,7 +92,7 @@ class Home extends CI_Controller {
 
     function forgetpassword() {  //loading login page
         $show_data = array();
-        $show_data['error'] = '';
+        $show_data['error'] = $this->session->userdata('error');
         $show_data['success'] = $this->session->userdata('success');
         $this->clearmessage();
         //----------------------------------- forget password -----------------------//
