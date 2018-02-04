@@ -314,6 +314,28 @@ class Vendor_model extends CI_Model
 			return $return_value;	
 		}
 	}
+
+    function create_room_type($data)
+    {
+        $query = $this->db->query("SELECT count(1) as cnt FROM room_type WHERE type='".$data['type']."'");
+        $check_array = $query->row_array();
+        if($check_array['cnt']>0){
+            return 0;
+        }else{
+            $this->db->insert('room_type',$data);
+            $return_value=$this->db->insert_id();
+            return $return_value;
+        }
+    }
+
+    function getall_roomtypes($condition)
+    {
+        $query = $this->db->query("SELECT * FROM room_type ".$condition." ORDER BY type" );
+        $return_array = $query->result_array();
+        return $return_array;
+    }
+
+
 	
 	//fetching the location details
 	function getall_location($condition)
