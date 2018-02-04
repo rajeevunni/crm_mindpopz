@@ -72,6 +72,7 @@
                             <th>Email</th>
                             <th>Reference</th>
                             <th>Status</th>
+                            <th>Mobile</th>
                             <?php 
                             if($this->session->userdata('user_type')==1)
                             {
@@ -98,6 +99,7 @@
                             <td><?php echo $details['guest_email']; ?></td>
                             <td><?php echo $details['enquiry_reference'];?></td>
                             <td><?php echo $details['enquiry_status'];?></td>
+                            <td><?php echo $details['guest_mobile']; ?></td>
                             <?php 
                             if($this->session->userdata('user_type')==1)
                             {
