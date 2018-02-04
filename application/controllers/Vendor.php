@@ -814,13 +814,34 @@ class Vendor extends CI_Controller
 			if ($result > 0) {
 				$this->success('<p class="success">Vendor Category has been added successfully</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#category');
-				exit;					
+				exit;
 			}else{
 				$this->error('<p class="error">Duplicate entry not allowed</p>');
 				redirect($_SERVER['HTTP_REFERER'].'#category');
 				exit;
 			}
 		}
+
+        if(isset($_POST['add_room_type']))
+        {
+            $user_info = array();
+            if(empty($this->input->post('room_type')) || trim($this->input->post('room_type')=='')){
+                $this->error('<p class="error">Please enter room type</p>');
+                redirect($_SERVER['HTTP_REFERER'].'#roomtype');
+                exit;
+            }
+            $user_info['type'] = $this->input->post('room_type');
+            $result = $this->Vendor_model->create_room_type($user_info);
+            if ($result > 0) {
+                $this->success('<p class="success">Room Type has been added successfully</p>');
+                redirect($_SERVER['HTTP_REFERER'].'#roomtype');
+                exit;
+            }else{
+                $this->error('<p class="error">Duplicate entry not allowed</p>');
+                redirect($_SERVER['HTTP_REFERER'].'#roomtype');
+                exit;
+            }
+        }
 		
 		if(isset($_POST['add_status']))
 		{
@@ -928,6 +949,7 @@ class Vendor extends CI_Controller
 		$show_data['all_vendor_category'] = $this->Vendor_model->getall_vendor_categories($condition);
 		$show_data['reference_details'] = $this->Vendor_model->getall_reference($condition);
 		$show_data['enquiry_status'] = $this->Vendor_model->getall_status($condition);
+        $show_data['roomtypes'] = $this->Vendor_model->getall_roomtypes($condition);
 		
 		
 		$show_data['name'] = $this->session->userdata('user_name');

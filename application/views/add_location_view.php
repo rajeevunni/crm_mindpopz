@@ -448,6 +448,82 @@
             </div>
             
 		</div>
+
+        <div class="col-md-6  col-sm-6 col-xs-12" style="height:400px;">
+            <div class="panel panel-warning">
+                <div class="panel-heading search_guest" id="roomtype" >
+                    <i class="fa fa-bars"></i>
+                    &nbsp;Add Room Type
+                </div>
+                <div class="panel-body">
+                    <form action="" id="add_roomtype" class="form-horizontal form-label-left" name="" enctype="multipart/form-data" method="post">
+                        <div class="x_content">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12"> -->
+                            <div class="col-md-7 col-sm-7 col-xs-12 form-group">
+                                <label class="control-label col-md-6 col-sm-6 col-xs-12">Room Type</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="" class="form-control" name="room_type" id="room_type" placeholder="Room Type">
+                                    <div id="error_f_name" class="val__msgbx"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+                                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-0">
+                                    <!-- <button class="btn btn-primary" type="reset">Reset</button> -->
+                                    <button type="submit" class="btn btn-success" id="add_room_type" name="add_room_type" onclick="return add_crm_validation()">Save</button>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </form>
+                    <hr>
+                    <div style="height:200px;overflow: scroll;">
+                        <table id="status" class="table" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>Room type</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <?php
+                            if($this->session->userdata('user_type')!=1)
+                            {
+                                $action = 'style="display:none"';
+                            }
+                            else
+                            {
+                                $action = 'style="display:block"';
+                            }
+                            ?>
+
+                            <tbody>
+                            <?php
+                            $i = 1;
+                            foreach ($roomtypes as $details) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo ucwords($details['type']); ?></td>
+
+
+                                    <td>
+                                        <a data-toggle="modal" id="<?php echo $details['id']; ?>" onclick="enquiry_status_edit_popup(this.id)" data-target=".enquiry_status"><span class="glyphicon glyphicon-pencil action_icon edit_guest"></span></a>
+                                        <input type="hidden" id="guest_id" value="<?php echo $details['id']; ?>">
+                                        <span <?php echo $action; ?> class="glyphicon glyphicon-trash action_icon " value="<?php echo $details['id']; ?>" onclick="delete_enquiry_status(this)"></span>
+                                    </td>
+                                </tr>
+                                <?php
+                                $i++;
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         
         
 		
