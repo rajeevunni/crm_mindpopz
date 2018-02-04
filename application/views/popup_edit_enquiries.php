@@ -1,15 +1,16 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
     </button>
-    <h4 class="modal-title" id="myModalLabel">Edit Guest Enquires</h4>
+    <h4 class="modal-title" id="myModalLabel">Edit Guest Plan</h4>
 </div>
+<?php //print_r($getall_guest_enquiry);?>
 <form class="form-horizontal form-label-left" method="post" id="bulkupadd_enquiriesload_emp" name="add_enquiries"
 action="<?php echo base_url() . 'index.php/Guest/edit_guest_enquiries' ?>" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Date </label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input class="form-control" value="<?php echo date('d-M-Y', strtotime($getall_guest_enquiry['call_back_date'])); ?>" type="text" name="call_back_date" id="call_back_date" >
+                <input class="form-control" value="<?php echo date('m-d-Y', strtotime($getall_guest_enquiry['call_back_date'])); ?>" type="text" name="call_back_date" id="call_back_date" >
                 <div id="" class="val__msgbx"></div>
             </div>
         </div>
@@ -20,7 +21,7 @@ action="<?php echo base_url() . 'index.php/Guest/edit_guest_enquiries' ?>" encty
                 <?php
                 foreach($getall_location as $location)
                 {
-                    $selected = $location['location'] == $filled_data['location']?'selected':'';
+                    $selected = $location['location'] == $getall_guest_enquiry['location']?'selected':'';
                 ?>
                     <option value="<?php echo $location['location'] ;?>" <?php echo $selected; ?>><?php echo $location['location']; ?></option>
                 <?php 
@@ -35,7 +36,7 @@ action="<?php echo base_url() . 'index.php/Guest/edit_guest_enquiries' ?>" encty
                 <?php
                 foreach($getall_vendor_type as $type)
                 {
-                    $selected = $type['type_name'] == $filled_data['type_name']?'selected':'';
+                    $selected = $type['type_name'] == $getall_guest_enquiry['vendor_type']?'selected':'';
                 ?>
                     <option value="<?php echo $type['type_name'] ;?>" <?php echo $selected; ?>><?php echo $type['type_name']; ?></option>
                 <?php 
@@ -46,7 +47,7 @@ action="<?php echo base_url() . 'index.php/Guest/edit_guest_enquiries' ?>" encty
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hotel Name </label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" class="form-control" value="<?php $getall_guest_enquiry['hotel_name']; ?>" name="hotel_name" id="hotel_name">
+                <input type="text" class="form-control" value="<?php echo $getall_guest_enquiry['hotel_name']; ?>" name="hotel_name" id="hotel_name">
             </div>
         </div>
         <div class="form-group">
@@ -146,7 +147,6 @@ action="<?php echo base_url() . 'index.php/Guest/edit_guest_enquiries' ?>" encty
     $('input[name="call_back_date"]').daterangepicker(
         {
             singleDatePicker: !0,
-            minDate: moment(),
             singleClasses: "picker_4"
         }
     );

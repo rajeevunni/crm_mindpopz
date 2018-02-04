@@ -429,6 +429,18 @@ class Guest extends CI_Controller
 			redirect($_SERVER['HTTP_REFERER']);
 		}	
 	}
+    function delete_guest_enquiry_table()
+    {
+        if(isset($_POST['guest_enquiry_table_id']))
+        {
+            $guest_enquiry_table_id= $_POST['guest_enquiry_table_id'];
+            $this->Guest_model->delete_guest_enquiry_table($guest_enquiry_table_id);
+
+            echo $guest_enquiry_table_id ;exit;
+            // print_r($this->db->last_query());
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
 
 	function get_download_sheet()
     {

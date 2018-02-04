@@ -79,9 +79,17 @@ class Guest_model extends CI_Model
 		return $query;
 	}
 
-	/* This function lists the guest details on the Search Guest Enquiry 
-		@params: condition - SQL querry for custom db querying
-	*/
+    function delete_guest_enquiry_table($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->delete('guest_enquiries_table');
+        return $query;
+    }
+
+
+    /* This function lists the guest details on the Search Guest Enquiry
+        @params: condition - SQL querry for custom db querying
+    */
 	function fetch_guest_details($condition=""){
 		$query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
 										FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm

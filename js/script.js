@@ -3725,15 +3725,17 @@ function get_enquiries_popup()
     });
 }
 
-function get_enquiries_edit_popup(id)
+function get_enquiries_edit_popup(targetData)
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
+    var guest_enquiry_table_id = targetData.getAttribute('value');
+    ///var pathstring = String(window.location);
+    //var patharray = pathstring.split("/");
+    //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
     // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
 
-    var url = path + "/index.php/Guest/edit_enquires_popup";
-    $.post(url, {id:id}, function (data) {
+    var url = sitebaseurl + "/index.php/Guest/edit_enquires_popup";
+    //alert(guest_enquiry_table_id);
+    $.post(url, {id:guest_enquiry_table_id}, function (data) {
         if (data != '') {
             $('#edit_enquires_popup_data').html(data);
         }

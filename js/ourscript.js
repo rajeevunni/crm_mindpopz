@@ -1,4 +1,5 @@
 
+var sitebaseurl = "http://localhost/crm-mindpopz/crm_mindpopz";
 $(document).ready(function(){
     
     var mytable=$('#our_datatable').DataTable({
@@ -391,5 +392,31 @@ function delete_accommodation (targetData)
             }
         }); 
         window.location.reload();
+    }
+}
+
+function delete_enquiry_table (targetData)
+{
+    var guest_enquiry_table_id = targetData.getAttribute('value');
+     //alert(guest_enquiry_table_id);
+    var result = window.confirm("Do you want to delete?");
+    if(result== true)
+    {
+        //var pathstring = String(window.location);
+        //var patharray = pathstring.split("/");
+        //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3]+ '/' + patharray[4];
+        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+        var url = sitebaseurl + "/index.php/Guest/delete_guest_enquiry_table";
+        //alert(url);
+        $.post(url, {guest_enquiry_table_id:guest_enquiry_table_id}, function (data)
+        {
+            //console.log(data);
+
+            if (data!='')
+            {
+                window.location.reload();
+            }
+        });
+
     }
 }
