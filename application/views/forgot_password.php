@@ -17,7 +17,7 @@
                            <?php echo $success; ?>
                         </div>
                         <div>
-                           <input type="text" class="form-control" name="ls_username" id="ls_username" placeholder="Username" required="" />
+                           <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="" />
                            <div id="error_ls_username" class="val__msgbx" style="margin-right: 300px;margin-top: 0px;"></div>
                         </div>
                         <div class="col-md-offset-0 col-xs-offset-0 col-sm-offset-0" >

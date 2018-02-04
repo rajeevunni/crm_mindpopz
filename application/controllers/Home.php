@@ -101,26 +101,38 @@ class Home extends CI_Controller {
             $email = $this->input->post('email');
 
             $condition = "WHERE username='" . $email . "'";
-            $result = $this->Home_model->check_mail($condition);
+            $result=$this->Home_model->check_mail($condition);
 
             if ($result > 0) {
                 $info = array();
-                // $password = $this->randomPassword();
-
-                $password = 'abc123AB';
+                $password = $this->randomPassword();
+                $password='sayooj';
+                //echo $password;exit;
                 $info['password'] = md5($password);
                 $this->Home_model->passwordupdate('user', $info, $email);
 
                 $mail_subject = 'Password Reset';
 
-                $mail_content = str_replace($need_replace, $replacing_content, $mail_template['mail_content']);
+                $mail_content = "Your password has been reset successfully!<br>
+                PASSWORD: ".$password."<br>
+                ";
 
-                $mail_res = sendgrid_mailer($mail_subject, $email, $mail_content);
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                // More headers
+                $headers .= 'From: <paulmindpopz@gmail.com>' . "\r\n";
 
-                $this->success('<p class="success">Password reset successfully. Please Check your email and get credentials.</p>');
-                redirect($_SERVER['HTTP_REFERER']);
+                if($mail_res = mail( $email, $mail_subject, $mail_content,$headers)){
+                    //echo "Password reset successfully. Please Check your email and get credentials.";exit;
+                    $this->success('<p class="success">Password reset successfully. Please Check your email and get credentials.</p>');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }else{
+                    //echo "Could not send mail";exit;
+                    $this->error('<p class="error">Could not send mail.</p>');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
             } else {
-                $this->success('<p class="success">This email id does not exist.</p>');
+                $this->error('<p class="error">This email id does not exist.</p>');
                 redirect($_SERVER['HTTP_REFERER']);
             }
         }else{
@@ -168,6 +180,14 @@ class Home extends CI_Controller {
     private function success($message) {
         $userdata = array(
             'success' => $message
+        );
+        $this->session->set_userdata($userdata);
+    }
+        // private function to load the error message in the view page.
+    private function error($message)
+    {
+        $userdata = array(
+            'error'    => $message
         );
         $this->session->set_userdata($userdata);
     }
