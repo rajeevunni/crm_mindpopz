@@ -72,7 +72,7 @@ $this->load->view('includes/head');
                                             <td><?php echo $call_back['enquiry_reference'];?></td>
                                             <td><?php echo date('d-M-Y', strtotime($call_back['call_back_date'])); ?></td>
                                             <td><?php echo $call_back['call_back_time'];?></td>
-                                            <td><?php echo $call_back['enquiry_crm'];?></td>
+                                            <td><?php echo $call_back['crm_name'];?></td>
                                         </tr>
                                         <?php
                                     
