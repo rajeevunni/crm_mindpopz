@@ -52,44 +52,28 @@ class Dashboard extends CI_Controller
         $data = $this->Generalsettings_model->get_crm_wise_barchart_date();
         //echo "<pre>"; print_r($data);die;
         $json_array = array();
+        $i=0;
+        $json_arrayykeys=array();
         foreach($data as $key => $res) {
-            $i=0;
             $date = $res['y'].'-'.$res['m'];
             $crm_data = $this->Generalsettings_model->get_crm_wise_barchart($res['y'], $res['m']);
-            $json_array[$i]['xparameter'] = date('M Y', strtotime($res['y'].'-'.$res['m']));
-            // echo "<pre>"; print_r($crm_data);
+            //$json_array[$i]['xparameter'] = date('M Y', strtotime($res['y'].'-'.$res['m']));
+            $json_array[$i]['y'] =date('M Y', strtotime($res['y'].'-'.$res['m']));
+             //echo "<pre>"; print_r($crm_data);//die;
+             //echo "<pre>"; print_r($json_array);die;
             foreach($crm_data as $crm) { 
-                $json_array[$i]['crm']= $crm['sum'];
-                // $json_array[$i]['closedticket'] = $department_count['total_closed'];
-                // $json_array[$i]['esclatedticket'] = $department_count['total_esclation'];
-                
-                // $show_data['bar_chart'] = json_encode($json_array);
-                // $json_array[$i]['month'] = date('M Y', strtotime($crm['y'].'-'.$crm['m']));
-                // $json_array[$i]['name'] = $crm['enquiry_crm'];
-                // $json_array[$i]['amount'] = $crm['sum'];
-                /*
-                $CrmData = '{enquiry_crm: "'.$crm['enquiry_crm'].'", month_sum: "'.$crm['sum'].'", month:"'.$crm['y'].'-'.$crm['m'].'", month_sum: "'.$crm['sum'].'"},';
-                //echo "<pre>"; print_r($CrmData); die;
-                $CrmName[] = '{enquiry_crm: "'.$crm['enquiry_crm'].'"},';
-                $CrmName[] = "'".$crm['enquiry_crm']."'";
-                $CrmSum[] = "'".$crm['sum']."'";
-                $json[$i]['CrmName'] = $crm['enquiry_crm'];
-                $json[$i]['CrmSum'] = $crm['sum'];
-                $json[$i]['month'] = date('M Y', strtotime($crm['y'].'-'.$crm['m']));
-                */
-                $i++;
-            } 
+                if (!in_array($crm['enquiry_crm'], $json_arrayykeys))
+                    {
+                        $json_arrayykeys[] = $crm['enquiry_crm'];
+                    } 
+                $json_array[$i][$crm['enquiry_crm']]= $crm['sum'];
+            }
+            $i++; 
         } 
-        // echo "<pre>"; print_r(json_encode($json_array)); die;
+        //echo "<pre>"; print_r(json_encode($json_array)); die;
         $show_data['CrmData'] = json_encode($json_array);
-        // echo json_encode($json_array);
-        //echo "<br/>";
-
-        //echo json_encode($json_array);
-        //die;
-        // $show_data['CrmData'] = json_encode($json_array);
-        // $show_data['CrmName'] = isset($CrmName) ? '['.implode(',', $CrmName).']' : '';
-        // $show_data['CrmSum'] = isset($CrmSum) ? '['.implode(',', $CrmSum).']' : '';
+        $show_data['CrmDatayKeys'] = json_encode($json_arrayykeys);
+        //echo "<pre>"; print_r($show_data['CrmDatayKeys']); die;
 
         $show_data['name'] = $this->session->userdata('user_name');
         $show_data['propic'] = $this->session->userdata('profile_pic');

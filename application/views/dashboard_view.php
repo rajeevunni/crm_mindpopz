@@ -144,7 +144,7 @@ $this->load->view('includes/head');
         redraw: true
     });
 
-    Morris.Bar({
+    /*Morris.Bar({
         element: 'crm_wise',
         data: <?php echo $CrmData; ?>,
         lineColors:['#ED5D5D'],
@@ -160,7 +160,16 @@ $this->load->view('includes/head');
         // stacked: true,
         resize: true,
         redraw: true
-    });
+    });*/
+ Morris.Line({
+  element: 'crm_wise',
+  data: <?php echo $CrmData; ?>,
+  xkey: 'y',
+  ykeys: <?php echo $CrmDatayKeys; ?>,
+  labels: <?php echo $CrmDatayKeys; ?>,
+  resize: true,
+  redraw: true
+});
 
     // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     // Morris.Area({

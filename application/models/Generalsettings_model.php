@@ -708,8 +708,10 @@ class Generalsettings_model extends CI_Model
 
 	function get_crm_wise_barchart_date()
 	{
+		$date= $this->get_finiancialyr();
 		$query = $this->db->query("SELECT YEAR(`booking_date`) as y, MONTH(`booking_date`) as m 
 									FROM `guest_enquiry`
+									WHERE booking_date BETWEEN '".$date['startdate']."' AND '".$date['enddate']."'
 									GROUP BY YEAR(`booking_date`), MONTH(`booking_date`) 
 									HAVING SUM(`booking_date`)>0 AND SUM(`booking_amount`)>0
 									ORDER BY `booking_date` DESC"
@@ -720,16 +722,26 @@ class Generalsettings_model extends CI_Model
 
 	function get_crm_wise_barchart($year, $month)
 	{
-		$query = $this->db->query("SELECT enquiry_crm, SUM(booking_amount) as sum, YEAR(`booking_date`) as y, MONTH(`booking_date`) as m 
-									FROM `guest_enquiry`
-									WHERE YEAR(booking_date) = '".$year."' AND MONTH(booking_date) = '".$month."'
-									
-									GROUP BY YEAR(`booking_date`), MONTH(`booking_date`), enquiry_crm
-									HAVING SUM(`booking_date`)>0 AND SUM(`booking_amount`)>0
-									ORDER BY `booking_date` DESC"
+		$querycrm = $this->db->query("SELECT id FROM `employee` WHERE id>1");
+		$return_arraycrm = $querycrm->result_array();
+		$arrayMnth=array();
+		foreach ($return_arraycrm as $key => $crm) {
+			$crmid=$crm['id'];
+			$query = $this->db->query("SELECT CONCAT (f_name,' ',COALESCE(l_name,'')) as enquiry_crm, COALESCE(SUM(booking_amount),0) as sum, $year as y, $month as m 
+									FROM employee e left join `guest_enquiry` ge ON e.id=ge.enquiry_crm
+									AND YEAR(booking_date) = '".$year."' AND MONTH(booking_date) = '".$month."' AND enquiry_crm =".$crm['id']." WHERE e.id =".$crm['id']
 								);
-		$return_array = $query->result_array();
-		return $return_array;	
+								/*GROUP BY YEAR(`booking_date`), MONTH(`booking_date`), enquiry_crm
+									HAVING SUM(`booking_date`)>0 AND SUM(`booking_amount`)>0
+									ORDER BY `booking_date` DESC*/
+			$return_array = $query->row_array();
+			$arrayMnth[$crmid]['enquiry_crm']=$return_array['enquiry_crm'];
+			$arrayMnth[$crmid]['sum']=$return_array['sum'];
+			$arrayMnth[$crmid]['y']=$return_array['y'];
+			$arrayMnth[$crmid]['m']=$return_array['m'];
+		}
+		
+		return $arrayMnth;	
 	}
 }
 
