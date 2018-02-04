@@ -69,10 +69,10 @@
                             <th>Guest Id</th>
                             <th>Guest Name</th>
                             <th>CRM</th>
-                            <th>Email</th>
+                            <th>Mobile</th>
                             <th>Reference</th>
                             <th>Status</th>
-                            <th>Mobile</th>
+                            <th>Email</th>
                             <?php 
                             if($this->session->userdata('user_type')==1)
                             {
@@ -96,10 +96,10 @@
                             <td><?php echo $details['guest_details_ref']; ?></td>
                             <td><?php echo $details['guest_name']; ?></td>
                             <td><?php echo $details['crm_name'];?></td>
-                            <td><?php echo $details['guest_email']; ?></td>
+                            <td><?php echo $details['guest_mobile']; ?></td>
                             <td><?php echo $details['enquiry_reference'];?></td>
                             <td><?php echo $details['enquiry_status'];?></td>
-                            <td><?php echo $details['guest_mobile']; ?></td>
+                            <td><?php echo $details['guest_email']; ?></td>
                             <?php 
                             if($this->session->userdata('user_type')==1)
                             {
