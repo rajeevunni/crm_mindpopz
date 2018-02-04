@@ -111,7 +111,7 @@ $this->load->view('includes/head');
                                             <!-- <td></td> -->
                                             <td><?php echo $details['guest_enquiry_ref']; ?></td>
                                             <td><?php echo $details['guest_name']; ?></td>  
-                                            <td><?php echo $details['crm_name'];?></td>
+                                            <td><?php echo $details['crm_name']; ?></td>
                                             <td><?php echo $details['enquiry_status'];?></td>
                                         </tr>
                                         <?php
