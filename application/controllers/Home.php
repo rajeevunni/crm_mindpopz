@@ -90,7 +90,11 @@ class Home extends CI_Controller {
         //$this->load->view('home_view', $show_data);
     }
 
-    function login() {  //loading login page
+    function forgetpassword() {  //loading login page
+        $show_data = array();
+        $show_data['error'] = '';
+        $show_data['success'] = $this->session->userdata('success');
+        $this->clearmessage();
         //----------------------------------- forget password -----------------------//
         if (isset($_POST['forgetpassword'])) {
 
@@ -107,15 +111,7 @@ class Home extends CI_Controller {
                 $info['password'] = md5($password);
                 $this->Home_model->passwordupdate('user', $info, $email);
 
-                $condition = " WHERE id=6"; // common mail template for password reset.
-
-                $this->load->model('Manage_ticket_model');
-                $mail_template = $this->Manage_ticket_model->get_mail_template($condition, 1);
-
-                $mail_subject = 'HelpUs - Password Reset';
-
-                $need_replace = array('{password}', '{link}', '{mail_from}');
-                $replacing_content = array($password, 'login with', 'no-reply@helpus.com');
+                $mail_subject = 'Password Reset';
 
                 $mail_content = str_replace($need_replace, $replacing_content, $mail_template['mail_content']);
 
@@ -127,6 +123,8 @@ class Home extends CI_Controller {
                 $this->success('<p class="success">This email id does not exist.</p>');
                 redirect($_SERVER['HTTP_REFERER']);
             }
+        }else{
+          $this->load->view('forgot_password', $show_data);   
         }
 
         
