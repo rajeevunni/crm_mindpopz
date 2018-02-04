@@ -421,7 +421,7 @@ class Vendor extends CI_Controller
 		$show_data['success']=$this->session->userdata('success');
         $this->clearmessage();
 		
-		$fill_data = $this->Vendor_model->getinduvidal_accommodation("WHERE id='".$id."'");
+		$fill_data = $this->Vendor_model->getinduvidal_accommodation("WHERE a.id='".$id."'");
 		$show_data['filled_data'] = $fill_data;
 		$show_data['name'] = $this->session->userdata('user_name');
 		$show_data['propic'] = $this->session->userdata('profile_pic');
@@ -646,8 +646,9 @@ class Vendor extends CI_Controller
 	
 	function edit_accommodation(){
 		$accom_id = $this->input->post('trid');
-		$condition = " WHERE id=".$accom_id;
+		$condition = " WHERE a.id=".$accom_id;
 		$show_data['accom_details'] = $this->Vendor_model->getinduvidal_accommodation($condition);
+        $show_data['roomtypes'] = $this->Vendor_model->getall_roomtypes('');
         $this->load->view('popup_edit_accommodation', $show_data);
 
 	}

@@ -24,9 +24,15 @@
             <div class="col-md-9 col-sm-9 col-xs-12">
                 <select class="form-control" name="room_type" id="room_type">
                     <option value="">Select Room Type</option>
-                    <option value="Executive" <?php if($accom_details['room_type'] == 'Executive'){echo "selected";}?>>Executive</option>
-                    <option value="Standaard" <?php if($accom_details['room_type'] == 'Standaard'){echo "selected";}?>>Standaard</option>
-                    <option value="Honeymoon Suite" <?php if($accom_details['room_type'] == 'Honeymoon Suite'){echo "selected";}?>>Honeymoon Suite</option>
+                    <?php
+                    foreach($roomtypes as $type)
+                    {
+                        $selected = $type['id'] == $accom_details['room_type']?'selected':'';
+                        ?>
+                        <option value="<?php echo $type['id']; ?>" <?php echo $selected; ?>><?php echo $type['type']; ?></option>
+                        <?php
+                    } ?>
+
                 </select>
                 <!-- <input class="form-control" readonly value="<?php echo $accom_details['room_type']; ?>" name="room_type" id="room_type" placeholder="Enter Room Type" type="text"> -->
                 <!-- <div id="error_ed_email" class="val__msgbx"></div> -->
