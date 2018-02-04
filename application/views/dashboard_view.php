@@ -107,7 +107,7 @@ $this->load->view('includes/head');
                                     //$i = 1;
                                     foreach ($all_pending_guest_details as $details) {
                                         ?>
-                                        <tr value="<?php echo $details['id']; ?>" onclick="get_pending_edit(this)">
+                                        <tr value="<?php echo $details['enqid']; ?>" onclick="get_pending_edit(this)">
                                             <!-- <td></td> -->
                                             <td><?php echo $details['guest_enquiry_ref']; ?></td>
                                             <td><?php echo $details['guest_name']; ?></td>  

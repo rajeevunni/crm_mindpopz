@@ -15,7 +15,7 @@ class Guest_model extends CI_Model
 	}
 	function getall_Pending_Guest_details()
 	{
-		$query = $this->db->query("SELECT ge.*, (select CONCAT(f_name,' ',COALESCE(l_name,'')) FROM employee e where ge.enquiry_crm=e.id ) AS crm_name, gem.*, gem.id as guest_enquiry_master_id, ge.id as guest_enq_id
+		$query = $this->db->query("SELECT ge.*,ge.id as enqid, (select CONCAT(f_name,' ',COALESCE(l_name,'')) FROM employee e where ge.enquiry_crm=e.id ) AS crm_name, gem.*, gem.id as guest_enquiry_master_id, ge.id as guest_enq_id
 										FROM guest_enquiry as ge
 										LEFT JOIN guest_enquiry_master as gem
 										ON gem.guest_enquiry_id = ge.id
