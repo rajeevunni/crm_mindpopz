@@ -705,7 +705,15 @@ class Generalsettings_model extends CI_Model
 		// print_r($this->db->last_query()) ; die;
 		return $return_array;	
 	}
-
+	function getnamefromid($crmid)
+	{
+		$query = $this->db->query("SELECT CONCAT(f_name,' ',COALESCE(l_name,'')) as name
+										FROM  employee
+										WHERE id=$crmid"
+		);
+		$return_array = $query->row_array();
+		return $return_array;
+	}
 	function get_crm_wise_barchart_date()
 	{
 		$date= $this->get_finiancialyr();
@@ -727,7 +735,7 @@ class Generalsettings_model extends CI_Model
 		$arrayMnth=array();
 		foreach ($return_arraycrm as $key => $crm) {
 			$crmid=$crm['id'];
-			$query = $this->db->query("SELECT CONCAT (f_name,' ',COALESCE(l_name,'')) as enquiry_crm, COALESCE(SUM(booking_amount),0) as sum, $year as y, $month as m 
+			$query = $this->db->query("SELECT CONCAT (f_name,' ',COALESCE(l_name,'')) as enquiry_crm,$crmid as crmid, COALESCE(SUM(booking_amount),0) as sum, $year as y, $month as m 
 									FROM employee e left join `guest_enquiry` ge ON e.id=ge.enquiry_crm
 									AND YEAR(booking_date) = '".$year."' AND MONTH(booking_date) = '".$month."' AND enquiry_crm =".$crm['id']." WHERE e.id =".$crm['id']
 								);
@@ -736,6 +744,7 @@ class Generalsettings_model extends CI_Model
 									ORDER BY `booking_date` DESC*/
 			$return_array = $query->row_array();
 			$arrayMnth[$crmid]['enquiry_crm']=$return_array['enquiry_crm'];
+			$arrayMnth[$crmid]['crmid']=$return_array['crmid'];
 			$arrayMnth[$crmid]['sum']=$return_array['sum'];
 			$arrayMnth[$crmid]['y']=$return_array['y'];
 			$arrayMnth[$crmid]['m']=$return_array['m'];

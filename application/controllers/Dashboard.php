@@ -53,26 +53,30 @@ class Dashboard extends CI_Controller
         //echo "<pre>"; print_r($data);die;
         $json_array = array();
         $i=0;
-        $json_arrayykeys=array();
+        $json_arrayykeys =array();
+        $json_arrayname =array();
         foreach($data as $key => $res) {
             $date = $res['y'].'-'.$res['m'];
             $crm_data = $this->Generalsettings_model->get_crm_wise_barchart($res['y'], $res['m']);
-            //$json_array[$i]['xparameter'] = date('M Y', strtotime($res['y'].'-'.$res['m']));
-            $json_array[$i]['y'] =date('M Y', strtotime($res['y'].'-'.$res['m']));
+            //$json_array[$i]['y'] =date('M Y', strtotime($res['y'].'-'.$res['m']));
+            $json_array[$i]['y'] =date('Y-m', strtotime($res['y'].'-'.$res['m']));
              //echo "<pre>"; print_r($crm_data);//die;
              //echo "<pre>"; print_r($json_array);die;
             foreach($crm_data as $crm) { 
-                if (!in_array($crm['enquiry_crm'], $json_arrayykeys))
-                    {
-                        $json_arrayykeys[] = $crm['enquiry_crm'];
-                    } 
-                $json_array[$i][$crm['enquiry_crm']]= $crm['sum'];
+                if (!in_array($crm['crmid'], $json_arrayykeys))
+                {
+                        $json_arrayykeys[] = $crm['crmid'];
+                        $crmnamearr=$this->Generalsettings_model->getnamefromid($crm['crmid']);
+                        $json_arrayname[] = $crmnamearr['name'];
+                } 
+                $json_array[$i][$crm['crmid']]= $crm['sum'];
             }
             $i++; 
         } 
         //echo "<pre>"; print_r(json_encode($json_array)); die;
         $show_data['CrmData'] = json_encode($json_array);
         $show_data['CrmDatayKeys'] = json_encode($json_arrayykeys);
+        $show_data['CrmDataName'] = json_encode($json_arrayname);
         //echo "<pre>"; print_r($show_data['CrmDatayKeys']); die;
 
         $show_data['name'] = $this->session->userdata('user_name');

@@ -166,10 +166,9 @@ $this->load->view('includes/head');
   data: <?php echo $CrmData; ?>,
   xkey: 'y',
   ykeys: <?php echo $CrmDatayKeys; ?>,
-  labels: <?php echo $CrmDatayKeys; ?>,
-  resize: true,
-  redraw: true
+  labels: <?php echo $CrmDataName; ?>
 });
+
 
     // var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     // Morris.Area({
