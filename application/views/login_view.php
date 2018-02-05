@@ -28,7 +28,7 @@
                            <button class="btn btn-success submit" type="submit" name="adminlogin" id="adminlogin" class="btn btn-success login_btn_style" value="Login" onclick="return login_validate()">Log in</button>
                         </div>
                      </form>
-                     <a href="./Home/forgetpassword">forgot  password?</a>
+                     <a href="Home/forgetpassword">forgot  password?</a>
                   </div>
                   <div class="clearfix"></div>
                </section>
