@@ -116,8 +116,8 @@
                             </div> 
                             <div class="form-group pull-right">
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-0">
+                                     <button type="submit" name="filter_guest" class="btn btn-success">Search</button>
                                     <input type="submit" class="btn btn-primary" value="Export as Excel" name="download_excel" >
-                                    <button type="submit" name="filter_guest" class="btn btn-success">Search</button>
                                 </div>
                             </div> 
                         </form>
