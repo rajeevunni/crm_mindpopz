@@ -1,3 +1,4 @@
+var sitebaseurl = "http://localhost/crm-mindpopz/crm_mindpopz";
 jQuery(function ($) {
     var name = /^[a-zA-Z]{3,15}$/i;
     var email = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
@@ -3796,11 +3797,11 @@ function get_edit_accommodtion(targetData)
 {
     
     var trid = targetData.getAttribute('value'); // table row ID 
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
+   // var pathstring = String(window.location);
+    //var patharray = pathstring.split("/");
+    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
     // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_accommodation";
+    var url = sitebaseurl + "/index.php/Vendor/edit_accommodation";
     $.post(url, {trid: trid}, function (data) {
         if (data != '') { 
             $('#edit_accommodation_data').html(data);

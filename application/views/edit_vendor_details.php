@@ -422,7 +422,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo date('d-M-Y', strtotime($details['start_date'])); ?></td>
                                     <td><?php echo date('d-M-Y', strtotime($details['end_date'])); ?></td>
-                                    <td><?php echo $details['room_type']; ?></td>
+                                    <td><?php echo $details['type']; ?></td>
                                     <td><?php echo $details['occupents']; ?></td>
                                     <td><?php echo $details['food_plan']; ?></td>
                                     <td><?php echo $details['rack_rate']; ?></td>

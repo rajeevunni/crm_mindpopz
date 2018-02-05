@@ -48,16 +48,16 @@ class Vendor_model extends CI_Model
 	}
 	function getinduvidal_accommodation($condition)
 	{
-		$query = $this->db->query("SELECT *
-										FROM accommodation
+		$query = $this->db->query("SELECT a.* , COALESCE(r.type,'') as type
+										FROM accommodation a left join room_type r on r.id= a.room_type
 										".$condition
 								);
 		$return_array = $query->row_array();
 		return $return_array;
 	}
 	function getall_accommodations($condition){
-		$query = $this->db->query("SELECT *
-									FROM accommodation
+		$query = $this->db->query("SELECT a.* , COALESCE(r.type,'') as type
+									FROM accommodation a left join room_type r on r.id= a.room_type
 									".$condition."
 									ORDER BY id DESC"
 								);
