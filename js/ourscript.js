@@ -35,8 +35,8 @@ $(document).ready(function(){
             $(this).addClass('selected');
         }  
         var id = mytable1.row(this).data(); 
-        console.log("edit_vendor_details/" + id[0])        
-        document.location = "edit_vendor_details/" + id[0];
+        console.log("edit_vendor_details/" + id[1])        
+        document.location = "edit_vendor_details/" + id[1];
 
     } );
 
