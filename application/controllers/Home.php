@@ -76,7 +76,7 @@ class Home extends CI_Controller {
                             }
                             
                         } else {
-                            $this->success('<p class="error">You are not registred.</p>');
+                            $this->error('<p class="error">You are not registred.</p>');
                             redirect(base_url() . 'index.php/Home/' . $this->uri->segment(3));
                         }
                     }
@@ -91,13 +91,13 @@ class Home extends CI_Controller {
     }
 
     function forgetpassword() {  //loading login page
+
         $show_data = array();
         $show_data['error'] = $this->session->userdata('error');
         $show_data['success'] = $this->session->userdata('success');
         $this->clearmessage();
         //----------------------------------- forget password -----------------------//
         if (isset($_POST['forgetpassword'])) {
-
             $email = $this->input->post('email');
 
             $condition = "WHERE username='" . $email . "'";
@@ -106,7 +106,6 @@ class Home extends CI_Controller {
             if ($result > 0) {
                 $info = array();
                 $password = $this->randomPassword();
-                $password='sayooj';
                 //echo $password;exit;
                 $info['password'] = md5($password);
                 $this->Home_model->passwordupdate('user', $info, $email);
@@ -172,7 +171,8 @@ class Home extends CI_Controller {
 
     private function clearmessage() {
         $userdata = array(
-            'success' => ''
+            'success' => '',
+            'error' => ''
         );
         $this->session->set_userdata($userdata);
     }

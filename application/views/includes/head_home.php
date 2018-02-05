@@ -42,47 +42,68 @@
         <!-- Dropzone.css -->
         <link href="<?php echo base_url();?>css/dropzone/dropzone.min.css" rel="stylesheet">
         <!-- Custom Theme Style -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>        
         
-    	<script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/jquery.dataTables.min.js"></script>
-    	
         <!-- Bootstrap -->
         <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap.min.js"></script>
         <!-- FastClick -->
         <script type="text/javascript" src="<?php echo base_url();?>js/fastclick.js"></script>
         <!-- NProgress -->
         <script type="text/javascript" src="<?php echo base_url();?>js/nprogress.js"></script>
+        <!-- iCheck -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/icheck.min.js"></script>
+        <!-- Chart.js -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/Chart.min.js"></script>
         <!-- jQuery custom content scroller -->
         <script type="text/javascript" src="<?php echo base_url();?>js/moment.min.js"></script>
-
+        <!-- morris.js -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/raphael.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/morris.min.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap-progressbar.min.js"></script>
         <!-- Dropzone.js -->
         <script type="text/javascript" src="<?php echo base_url();?>js/dropzone/dropzone.min.js"></script>
         
+
         <!-- Datatables -->
+        <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/daterangepicker.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap-datetimepicker.min.js"></script>
-        
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/buttons.flash.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/responsive.bootstrap.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/buttons.bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/buttons.flash.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/buttons.print.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.keyTable.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/datatable/dataTables.scroller.min.js"></script>
-        
-        <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/jszip.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/pdfmake.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/datatable/vfs_fonts.js"></script> 
+       
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.hotkeys.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/prettify.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/jquery.smartWizard.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/script_validation.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/tableExport.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jquery.base64.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/html2canvas.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jspdf/libs/sprintf.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jspdf/jspdf.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jspdf/libs/base64.js"></script>
+
+
+         
 
         
         <!-- PNotify -->
         <script type="text/javascript" src="<?php echo base_url();?>js/pnotify/pnotify.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/pnotify/pnotify.buttons.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/pnotify/pnotify.nonblock.js"></script>
-        
           
     <?php
         if(isset($success) && $success!='')
