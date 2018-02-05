@@ -206,6 +206,7 @@ class Vendor extends CI_Controller
 		$show_data['all_vendor_type'] = $this->Vendor_model->getall_vendor_type($condition);
 		$show_data['name'] = $this->session->userdata('user_name');
 		$show_data['propic'] = $this->session->userdata('profile_pic');
+        $show_data['roomtypes'] = $this->Vendor_model->getall_roomtypes('');
 
 		// loading category view page 
 		$this->load->view('edit_vendor_details',$show_data);	
@@ -937,6 +938,25 @@ class Vendor extends CI_Controller
 				exit;					
 			}
 		}
+        if(isset($_POST['edit_room_type']))
+        {
+            $user_info = array();
+            if(empty($this->input->post('roomtype')) || trim($this->input->post('roomtype')=='')){
+                $this->error('<p class="error">Please enter Room type</p>');
+                redirect($_SERVER['HTTP_REFERER'].'#roomtype');
+                exit;
+            }
+            // print_r($_POST);
+            // die();
+            $id = $this->input->post('roomtype_id');
+            $user_info['type'] = $this->input->post('roomtype');
+            $result = $this->Vendor_model->update_roomtype($user_info, $id);
+            if ($result > 0) {
+                $this->success('<p class="success">	Room type has been updated successfully</p>');
+                redirect($_SERVER['HTTP_REFERER'].'#roomtype');
+                exit;
+            }
+        }
 
 		$show_data = array();	
 		$show_data['error']=$this->session->userdata('error');
@@ -1045,6 +1065,18 @@ class Vendor extends CI_Controller
 		}
        
 	}
+    function edit_roomtype()
+    {
+        if (isset($_POST['id']) && $_POST['id'] != '')
+        {
+            $id = $this->input->post('id');
+            $condition = ' WHERE id='.$id;
+            $roomtype= $this->Vendor_model->getall_roomtypes($condition);
+            $show_data['roomtype'] = $roomtype;
+            $this->load->view('popup_roomtype_edit_view', $show_data);
+        }
+
+    }
 	//delete the location
 	function delete_location()
 	{
@@ -1107,6 +1139,15 @@ class Vendor extends CI_Controller
 			redirect($_SERVER['HTTP_REFERER']);
 		}	
 	}
+    function delete_roomtype()
+    {
+        if(isset($_POST['roomtypeid']))
+        {
+            $roomtypeid= $_POST['roomtypeid'];
+            $this->Vendor_model->delete_room_type($roomtypeid);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
     // private function to load the error message in the view page.
     private function error($message)
     {

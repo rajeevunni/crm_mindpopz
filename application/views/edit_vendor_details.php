@@ -325,7 +325,18 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Room Type</label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" value=""  class="form-control" name="room_type" id="room_type">
+                                    <select class="form-control" name="room_type" id="room_type">
+                                        <option value="">Select Room Type</option>
+                                        <?php
+                                        foreach($roomtypes as $type)
+                                        {
+                                            $selected = $type['id'] == $accom_details['room_type']?'selected':'';
+                                            ?>
+                                            <option value="<?php echo $type['id']; ?>" <?php echo $selected; ?>><?php echo $type['type']; ?></option>
+                                            <?php
+                                        } ?>
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">

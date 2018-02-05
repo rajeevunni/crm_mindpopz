@@ -420,3 +420,29 @@ function delete_enquiry_table (targetData)
 
     }
 }
+
+function delete_room_type (targetData)
+{
+    var roomtypeid = targetData.getAttribute('value');
+    //alert(guest_enquiry_table_id);
+    var result = window.confirm("Do you want to delete?");
+    if(result== true)
+    {
+        //var pathstring = String(window.location);
+        //var patharray = pathstring.split("/");
+        //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3]+ '/' + patharray[4];
+        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+        var url = sitebaseurl + "/index.php/Vendor/delete_roomtype";
+        //alert(url);
+        $.post(url, {roomtypeid:roomtypeid}, function (data)
+        {
+            //console.log(data);
+
+            if (data!='')
+            {
+                window.location.reload();
+            }
+        });
+
+    }
+}

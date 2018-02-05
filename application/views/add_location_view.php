@@ -508,9 +508,9 @@
 
 
                                     <td>
-                                        <a data-toggle="modal" id="<?php echo $details['id']; ?>" onclick="enquiry_status_edit_popup(this.id)" data-target=".enquiry_status"><span class="glyphicon glyphicon-pencil action_icon edit_guest"></span></a>
+                                        <a data-toggle="modal" id="<?php echo $details['id']; ?>" onclick="room_type_edit_popup(this.id)" data-target=".roomtype"><span class="glyphicon glyphicon-pencil action_icon edit_guest"></span></a>
                                         <input type="hidden" id="guest_id" value="<?php echo $details['id']; ?>">
-                                        <span <?php echo $action; ?> class="glyphicon glyphicon-trash action_icon " value="<?php echo $details['id']; ?>" onclick="delete_enquiry_status(this)"></span>
+                                        <span <?php echo $action; ?> class="glyphicon glyphicon-trash action_icon " value="<?php echo $details['id']; ?>" onclick="delete_room_type(this)"></span>
                                     </td>
                                 </tr>
                                 <?php
@@ -579,6 +579,14 @@
 
 		</div>
 	</div>
+</div>
+
+<div class="modal fade roomtype" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" id="edit_roomtype_data">
+
+        </div>
+    </div>
 </div>
 
 <!--<script>

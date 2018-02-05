@@ -3882,11 +3882,8 @@ function categorypopup(id)
 }
 function enquiry_status_edit_popup(id) 
 { 
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    //  var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_status";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_status";
     $.post(url, {id: id}, function (data) {
         
         if (data != '') { 
@@ -3894,6 +3891,21 @@ function enquiry_status_edit_popup(id)
         }
         else {
             $('#edit_status_data').html('Invalid Data');
+        }
+    });
+}
+
+function room_type_edit_popup(id)
+{
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_roomtype";
+    $.post(url, {id: id}, function (data) {
+
+        if (data != '') {
+            $('#edit_roomtype_data').html(data);
+        }
+        else {
+            $('#edit_roomtype_data').html('Invalid Data');
         }
     });
 }

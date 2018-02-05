@@ -92,6 +92,13 @@ class Vendor_model extends CI_Model
 		$result=$this->db->affected_rows();	
 		return $result;
 	}
+    function update_roomtype($data,$id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('room_type', $data);
+        $result=$this->db->affected_rows();
+        return $result;
+    }
 	function delete_vendor($id)
 	{
 		$this->db->where('id', $id);
@@ -577,6 +584,13 @@ class Vendor_model extends CI_Model
 		   $query = $this->db->delete('enquiry_status');
 		   return $query;
 	}
+
+    function delete_room_type($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->delete('room_type');
+        return $query;
+    }
 
 	//query for delete accomodation
 	function delete_accommodation($id)
