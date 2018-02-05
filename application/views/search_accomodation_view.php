@@ -110,8 +110,9 @@
                                 </div>
                                
                                <div class="form-group pull-right">
-                                    <input type="submit" class="btn btn-primary" value="Export as Excel" name="download_excel" >
                                     <button type="submit" name="filter_accomodation" class="btn btn-success">Search</button>
+                                    <input type="submit" class="btn btn-primary" value="Export as Excel" name="download_excel" >
+                                    
                                 </div>
                             </div>  
                         </form>
