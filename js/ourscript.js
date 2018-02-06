@@ -55,11 +55,8 @@ $(document).ready(function(){
         var result = window.confirm("Do you want to delete?");
         if(result== true) 
         {
-            var pathstring = String(window.location);
-            var patharray = pathstring.split("/");
-            var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-            // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-            var url = path + "/index.php/Guest/delete_guest";
+
+            var url = sitebaseurl + "/index.php/Guest/delete_guest";
             $.post(url, {guest_id:guest_id}, function (data) 
             { 	
                 if (data!='') 
@@ -76,11 +73,8 @@ $(document).ready(function(){
         var result = window.confirm("Do you want to delete?");
         if(result== true) 
         {
-            var pathstring = String(window.location);
-            var patharray = pathstring.split("/");
-            var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-            // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-            var url = path + "/index.php/Vendor/delete_vendor";
+
+            var url = sitebaseurl + "/index.php/Vendor/delete_vendor";
             $.post(url, {vendor_id:vendor_id}, function (data) 
             { 	
                 if (data!='') 
@@ -105,12 +99,8 @@ $(document).ready(function(){
         var result = window.confirm("Do you want to delete?");
         if(result== true) 
         {
-            var pathstring = String(window.location);
-  
-            var patharray = pathstring.split("/");
-            var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-            // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-            var url = path + "/index.php/Vendor/delete_crm";
+
+            var url = sitebaseurl + "/index.php/Vendor/delete_crm";
             $.post(url, {guest_id:guest_id}, function (data) 
             { 	
                 if (data!='') 
@@ -233,18 +223,16 @@ function delete_vechile_type(targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_vehicle";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_vehicle";
         $.post(url, {vehicle_id:vehicle_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 
@@ -252,21 +240,20 @@ function delete_vechile_type(targetData)
 function delete_location(targetData)
 {
     var location_id = targetData.getAttribute('value');
+    console.log(location_id);
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_location";
+        console.log(sitebaseurl);
+        var url = sitebaseurl + "/index.php/Vendor/delete_location";
         $.post(url, {location_id:location_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 function delete_vendor_type(targetData)
@@ -275,39 +262,35 @@ function delete_vendor_type(targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_vendor_type";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_vendor_type";
         $.post(url, {vendor_type_id:vendor_type_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 function delete_category_type(targetData)
 {
-    var vendor_category_id = targetData.getAttribute('value'); alert(vendor_category_id)
+    var vendor_category_id = targetData.getAttribute('value');
    
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_category_type";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_category_type";
         $.post(url, {vendor_category_id:vendor_category_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 function delete_reference(targetData)
@@ -317,18 +300,16 @@ function delete_reference(targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_reference";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_reference";
         $.post(url, {reference_id:reference_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 function delete_enquiry_status(targetData)
@@ -337,18 +318,16 @@ function delete_enquiry_status(targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_enquiry_status";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_enquiry_status";
         $.post(url, {status_id:status_id}, function (data) 
         { 	
             if (data!='') 
             {
+                window.location.reload();
             }
         }); 
-        window.location.reload();
+
     }
 }
 
@@ -359,11 +338,8 @@ function delete_enquiry (targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Guest/delete_guest";
+
+        var url = sitebaseurl + "/index.php/Guest/delete_guest";
         $.post(url, {guest_enquiry_id:guest_enquiry_id}, function (data) 
         { 	
             if (data!='') 
@@ -380,11 +356,8 @@ function delete_accommodation (targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true) 
     {
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/index.php/Vendor/delete_accommodation";
+
+        var url = sitebaseurl + "/index.php/Vendor/delete_accommodation";
         $.post(url, {accommodation_id:accommodation_id}, function (data) 
         { 	
             if (data!='') 
@@ -402,10 +375,7 @@ function delete_enquiry_table (targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true)
     {
-        //var pathstring = String(window.location);
-        //var patharray = pathstring.split("/");
-        //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3]+ '/' + patharray[4];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+
         var url = sitebaseurl + "/index.php/Guest/delete_guest_enquiry_table";
         //alert(url);
         $.post(url, {guest_enquiry_table_id:guest_enquiry_table_id}, function (data)
@@ -428,10 +398,7 @@ function delete_room_type (targetData)
     var result = window.confirm("Do you want to delete?");
     if(result== true)
     {
-        //var pathstring = String(window.location);
-        //var patharray = pathstring.split("/");
-        //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3]+ '/' + patharray[4];
-        // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+
         var url = sitebaseurl + "/index.php/Vendor/delete_roomtype";
         //alert(url);
         $.post(url, {roomtypeid:roomtypeid}, function (data)

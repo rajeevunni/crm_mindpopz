@@ -180,9 +180,7 @@ jQuery(function ($) {
 })
 ;
 
-var pathstring = String(window.location);
-var patharray = pathstring.split("/");
-var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
+
 
 function popupcontent_injection1(data) {
     $("html, body").animate({scrollTop: 0}, 500);
@@ -373,17 +371,14 @@ function fieldcheck(element_id, ruleArray) {
                 {
                     success_border(element_id);
                     document.getElementById('error_' + element_id).innerHTML = '';
-                    var pathstring = String(window.location);
-                    var patharray = pathstring.split("/");
-                    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
 
                     var field_name = document.getElementById('email').name;
                     var email = document.getElementById('email').value;
                     if (field_name == 'email') 
                     {
-                        var url = path + "/index.php/Manage_ticket/check_email_admin";
+                        var url = sitebaseurl + "/index.php/Manage_ticket/check_email_admin";
                     }
-                    var url = path + "/index.php/Manage_ticket/check_email_admin";
+                    var url = sitebaseurl + "/index.php/Manage_ticket/check_email_admin";
 
                     $.post(url, {email: email, field_name: field_name}, function (data) {
                         if (data == 1) 
@@ -422,21 +417,17 @@ function fieldcheck(element_id, ruleArray) {
                         success_border(element_id);
                         document.getElementById('error_' + element_id).innerHTML = '';
 
-                        var pathstring = String(window.location);
-                        var patharray = pathstring.split("/");
-                        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-
                         var username = document.getElementById(element_id).value;
                         var email = document.getElementById('email').value;
                         var email_name = document.getElementById('email').name;
                         if (email_name == 'e_email') {
-                            var url = path + "/index.php/client/user/get_existing_username";
+                            var url = sitebaseurl + "/index.php/client/user/get_existing_username";
                         }
                         else if (email_name == 'c_email') {
-                            var url = path + "/index.php/client_registration/get_existing_username";
+                            var url = sitebaseurl + "/index.php/client_registration/get_existing_username";
                         }
                         else {
-                            var url = path + "/index.php/jobseeker_registration/get_existing_username";
+                            var url = sitebaseurl + "/index.php/jobseeker_registration/get_existing_username";
                         }
 
                         $.post(url, {username: username, email: email}, function (data) {
@@ -699,7 +690,7 @@ formObj.prototype.send = function () {
 
         var str = $('#' + this.formNM).serialize();
 
-        var url = path + "index.php/" + to + "/" + tofunction;
+        var url = sitebaseurl + "index.php/" + to + "/" + tofunction;
         $.post(url, {fieldval: str}, function (data) {
             if (data == 'next') {
                 if (next != 'none') {
@@ -946,7 +937,7 @@ function back_toclearBorder(id) {
 
 /* Deparment */
 function departmentaddpopup() {
-    var url = path + "/index.php/Department/add";
+    var url = sitebaseurl + "/index.php/Department/add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -958,7 +949,7 @@ function departmentaddpopup() {
 }
 
 function departmenteditpopup(department_id) {
-    var url = path + "/index.php/Department/edit";
+    var url = sitebaseurl + "/index.php/Department/edit";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             $('#edit_department_data').html(data);
@@ -970,7 +961,7 @@ function departmenteditpopup(department_id) {
 }
 
 function institutedepartmenteditpopup(department_id) {
-    var url = path + "/index.php/Department/edit_insitute_department";
+    var url = sitebaseurl + "/index.php/Department/edit_insitute_department";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             $('#edit_institute_department_data').html(data); 
@@ -982,7 +973,7 @@ function institutedepartmenteditpopup(department_id) {
 }
 
 function departmentheadeditpopup(department_id) {
-    var url = path + "/index.php/Manage_user/edit_department_head";
+    var url = sitebaseurl + "/index.php/Manage_user/edit_department_head";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             $('#edit_dept_head_data').html(data);
@@ -994,7 +985,7 @@ function departmentheadeditpopup(department_id) {
 }
 
 function useraddpopup() {
-    var url = path + "/index.php/User/add";
+    var url = sitebaseurl + "/index.php/User/add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1006,7 +997,7 @@ function useraddpopup() {
 }
 
 function usereditpopup(user_id) {
-    var url = path + "/index.php/User/edit";
+    var url = sitebaseurl + "/index.php/User/edit";
     $.post(url, {user_id: user_id}, function (data) {
         if (data != '') {
             $('#edit_employee_data').html(data);
@@ -1019,7 +1010,7 @@ function usereditpopup(user_id) {
 
 function instituteusereditpopup(id) {
     var category_id = document.getElementById('category').value;
-    var url = path + "/index.php/Registration/edit";
+    var url = sitebaseurl + "/index.php/Registration/edit";
     $.post(url, {id: id, category_id: category_id}, function (data) {
         if (data != '') {
             $('#edit_employee_data').html(data);
@@ -1034,7 +1025,7 @@ function instituteusereditpopup(id) {
 function mappingaddpopup() {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Function_role_mapping/add";
+    var url = sitebaseurl + "/index.php/Function_role_mapping/add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1054,7 +1045,7 @@ function mappingeditpopup(id) {
 
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Function_role_mapping/edit";
+    var url = sitebaseurl + "/index.php/Function_role_mapping/edit";
     $.post(url, {mapping_id: mapping_id, category_id: category_id, role_id: role_id}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1067,11 +1058,7 @@ function mappingeditpopup(id) {
 
 function get_existing_username(sel) {
     var username = sel.value;
-
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/User/get_existing_username";
+    var url = sitebaseurl + "/index.php/User/get_existing_username";
     var email = document.getElementById('email').value;
 
     $.post(url, {username: username, email: email}, function (data) {
@@ -1087,7 +1074,7 @@ function get_existing_username(sel) {
 function roleaddpopup() {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Role/add";
+    var url = sitebaseurl + "/index.php/Role/add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1101,7 +1088,7 @@ function roleaddpopup() {
 function roleeditpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Role/edit";
+    var url = sitebaseurl + "/index.php/Role/edit";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_role_data').html(data);
@@ -1115,7 +1102,7 @@ function roleeditpopup(id) {
 function categoryaddpopup() {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Category/add";
+    var url = sitebaseurl + "/index.php/Category/add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1129,7 +1116,7 @@ function categoryaddpopup() {
 function categoryeditpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Category/edit";
+    var url = sitebaseurl + "/index.php/Category/edit";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_category_data').html(data);
@@ -1143,7 +1130,7 @@ function categoryeditpopup(id) {
 function categoryadmineditpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Category/admin_edit";
+    var url = sitebaseurl + "/index.php/Category/admin_edit";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_admin_category_data').html(data);
@@ -1157,7 +1144,7 @@ function categoryadmineditpopup(id) {
 function managmentusereditpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Category/management_user_edit";
+    var url = sitebaseurl + "/index.php/Category/management_user_edit";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_managment_user_data').html(data);
@@ -1171,7 +1158,7 @@ function managmentusereditpopup(id) {
 function categorypocpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Manage_user/edit_poc_category";
+    var url = sitebaseurl + "/index.php/Manage_user/edit_poc_category";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_poc_data').html(data);
@@ -1185,7 +1172,7 @@ function categorypocpopup(id) {
 function managenormaluserpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Manage_user/normal_user_view";
+    var url = sitebaseurl + "/index.php/Manage_user/normal_user_view";
     $.post(url, {id: id}, function (data) {
 
         if (data != '') {
@@ -1199,7 +1186,7 @@ function managenormaluserpopup(id) {
 
 function manageexternaluserpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
-    var url = path + "/index.php/Manage_user/external_user_view1";
+    var url = sitebaseurl + "/index.php/Manage_user/external_user_view1";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_external_user_data').html(data);
@@ -1212,7 +1199,7 @@ function manageexternaluserpopup(id) {
 
 function filter_category(cat_id) {
     if (cat_id != '') {
-        var url = path + "/index.php/Manage_user/manage_department";
+        var url = sitebaseurl + "/index.php/Manage_user/manage_department";
         $.post(url, {cat_id: cat_id}, function (data) {
             if (data != '') {
                 // $('#rtable').DataTable().reload();
@@ -1238,7 +1225,7 @@ function filter_category(cat_id) {
 }
 
 function get_user_category(category_type_id) {
-    var url = path + "/index.php/User/get_category";
+    var url = sitebaseurl + "/index.php/User/get_category";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (data != '') {
             $('#category_').html(data);
@@ -1355,7 +1342,7 @@ function get_user_role(category, type) {
         institute.attr("value", '');
     }
 
-    var url = path + "/index.php/User/get_user_category_role";
+    var url = sitebaseurl + "/index.php/User/get_user_category_role";
     $.post(url, {category_id: category_id, type:type}, function (data) {
         if (data) {
             if ($(category).prop('checked') == true) {
@@ -1371,7 +1358,7 @@ function get_user_role(category, type) {
 }
 
 function get_category_role(category_id) {
-    var url = path + "/index.php/Department/get_category_role";
+    var url = sitebaseurl + "/index.php/Department/get_category_role";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != '') {
             $('#category_role').html(data);
@@ -1383,7 +1370,7 @@ function get_category_role(category_id) {
 }
 
 function get_function_role_department(category_id) {
-    var url = path + "/index.php/Function_role_mapping/get_fn_category_role";
+    var url = sitebaseurl + "/index.php/Function_role_mapping/get_fn_category_role";
 
     $.post(url, {category_id: category_id}, function (data) {
 
@@ -1399,7 +1386,7 @@ function get_function_role_department(category_id) {
 
 // category department
 function get_category_department(category_id) {
-    var url = path + "/index.php/Manage_ticket/get_category_department";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_category_department";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != '') {
             $('#department').html(data);
@@ -1412,7 +1399,7 @@ function get_category_department(category_id) {
 
 // category department
 function get_category_department_employee(category_id) {
-    var url = path + "/index.php/Manage_ticket/get_category_department";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_category_department";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != '') {
             $('#department').html(data);
@@ -1427,7 +1414,7 @@ function get_category_department_employee(category_id) {
 function get_category_employee(category_id, type) {
     type = typeof type !== 'undefined' ? type : 0;
 
-    var url = path + "/index.php/Manage_ticket/get_category_employee_role";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_category_employee_role";
     $.post(url, {category_id: category_id, type: type}, function (data) {
         if (data != '') {
             $('#assigned_role').html(data);
@@ -1439,7 +1426,7 @@ function get_category_employee(category_id, type) {
 }
 
 function get_required_employee(role_id) {
-    var url = path + "/index.php/Manage_ticket/required_employee";
+    var url = sitebaseurl + "/index.php/Manage_ticket/required_employee";
     $.post(url, {role_id: role_id}, function (data) {
         if (data != '') {
             $('#assigned_to').html(data);
@@ -1452,7 +1439,7 @@ function get_required_employee(role_id) {
 
 // Ticket Re-assign
 function reassign_ticket(ticket_id) {
-    var url = path + "/index.php/Manage_ticket/ticket_reassign";
+    var url = sitebaseurl + "/index.php/Manage_ticket/ticket_reassign";
     $.post(url, {ticket_id: ticket_id}, function (data) {
         if (data != '') {
 
@@ -1477,7 +1464,7 @@ function reassign_ticket(ticket_id) {
 //Child ticket 
 
 function child_ticket(ticket_id) {
-    var url = path + "/index.php/Manage_ticket/ticket_reassign";
+    var url = sitebaseurl + "/index.php/Manage_ticket/ticket_reassign";
     $.post(url, {ticket_id: ticket_id}, function (data) {
         if (data != '') {
             $('#child_ticket').show();
@@ -1528,14 +1515,14 @@ function child_ticket(ticket_id) {
 
 //check email
 function checkuseremail(email) {
-    var url = path + "/index.php/Manage_ticket/check_user_email";
+    var url = sitebaseurl + "/index.php/Manage_ticket/check_user_email";
     $.post(url, {}, function (data) {
     });
 }
 
 function checkemailvalid() {
     var email = document.getElementById('ls_username').value;
-    var url = path + "/index.php/Manage_ticket/checking_existinguser";
+    var url = sitebaseurl + "/index.php/Manage_ticket/checking_existinguser";
     $.post(url, {email: email}, function (data) {
         if (data == 1) {
             $('.msg_signup').hide();
@@ -1660,7 +1647,7 @@ function get_defined_no_of_levels(sel) {
 
     var department_id = document.getElementById('department').value;
 
-    var url = path + "/index.php/Department_escalation/get_entered_field_levels";
+    var url = sitebaseurl + "/index.php/Department_escalation/get_entered_field_levels";
     $('.levels_on_severity_' + severity_id).html('');
     $.post(url, {
         entered_no: entered_no,
@@ -1696,7 +1683,7 @@ jQuery(function ($) {
         var employee_id = valu.attr('id');
         var employee_email = x;
 
-        var url = path + "/index.php/Department_escalation/get_employee_email";
+        var url = sitebaseurl + "/index.php/Department_escalation/get_employee_email";
         $.post(url, {
             employee_id: employee_id,
             employee_email: employee_email,
@@ -1726,7 +1713,7 @@ jQuery(function ($) {
         var severity_id = severity[0];
         var level = severity[1];
 
-        var url = path + "/index.php/Department_escalation/get_more_employee_to_level";
+        var url = sitebaseurl + "/index.php/Department_escalation/get_more_employee_to_level";
         $.post(url, {
             severity_id: severity_id,
             level: level,
@@ -1753,7 +1740,7 @@ jQuery(function ($) {
 // fetching existing escalation data
 function get_existing_escalation_data(sel) {
     department_id = sel.value;
-    var url = path + "/index.php/Department_escalation/existing_escalation_data";
+    var url = sitebaseurl + "/index.php/Department_escalation/existing_escalation_data";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             // $('#new_data').hide();
@@ -1774,7 +1761,7 @@ function get_existing_escalation_data(sel) {
 function manageraddpopup() {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Manage_user/manager_add";
+    var url = sitebaseurl + "/index.php/Manage_user/manager_add";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -1788,7 +1775,7 @@ function manageraddpopup() {
 function managereditpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Manage_user/manager_edit";
+    var url = sitebaseurl + "/index.php/Manage_user/manager_edit";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#edit_manager_data').html(data);
@@ -1801,7 +1788,7 @@ function managereditpopup(id) {
 
 // category for selected type
 function get_category(category_type_id) {
-    var url = path + "/index.php/Manage_user/get_category";
+    var url = sitebaseurl + "/index.php/Manage_user/get_category";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (data != '') {
             $('#category').html(data);
@@ -1814,7 +1801,7 @@ function get_category(category_type_id) {
 
 // category_employee
 function get_manager_employee(category_id) {
-    var url = path + "/index.php/Manage_user/get_category_employee";
+    var url = sitebaseurl + "/index.php/Manage_user/get_category_employee";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != '') {
             $('#manager').html(data);
@@ -1863,7 +1850,7 @@ function get_additional_field_date_attach(ticket_status) {
 }
 
 function get_all_employees_dept(department_id) {
-    var url = path + "/index.php/Manage_ticket/get_department_employees";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_department_employees";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             $('.department_employees').html(data);
@@ -1878,7 +1865,7 @@ function get_all_employees_dept(department_id) {
 function get_dept_employees(ticket_status) {
     if (ticket_status == 3 || ticket_status == 4) {
         var department_id = document.getElementById('department').value;
-        var url = path + "/index.php/Manage_ticket/get_department_employees";
+        var url = sitebaseurl + "/index.php/Manage_ticket/get_department_employees";
         $.post(url, {department_id: department_id}, function (data) {
             if (data != '') {
                 $('.department_employees').html(data);
@@ -1894,12 +1881,12 @@ function get_dept_employees(ticket_status) {
 }
 
 function splitticket(ticket_id) {
-    var url = path + "/index.php/Manage_ticket/";
+    var url = sitebaseurl + "/index.php/Manage_ticket/";
 }
 
 // get parent ticket of a child
 function get_parent_ticket(ticket_id) {
-    var url = path + "/index.php/Manage_ticket/get_parent_ticket_details";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_parent_ticket_details";
     $.post(url, {ticket_id: ticket_id}, function (data) {
 
         if (data != '') {
@@ -1958,7 +1945,7 @@ function get_parent_ticket(ticket_id) {
 // }
 
 function add_more_attachement(ticket_id) {
-    var url = path + "/index.php/Manage_ticket/get_more_attachements";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_more_attachements";
     $.post(url, {ticket_id: ticket_id}, function (data) {
         if (data != '') {
             $('#add_more_attachment').html(data);
@@ -1970,7 +1957,7 @@ function add_more_attachement(ticket_id) {
 }
 
 function get_normal_user_category(category_type_id) {
-    var url = path + "/index.php/Normal_user/get_normal_user_category";
+    var url = sitebaseurl + "/index.php/Normal_user/get_normal_user_category";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (data != '') {
             $('#category').html(data);
@@ -1985,7 +1972,7 @@ function filter_category_view_ticket(cat_id) {
     var severity_id = $('#severity').val();
     var status_id = $('#ticket_status').val();
 
-    var url = path + "/index.php/Manage_ticket/filter_ticket_details";
+    var url = sitebaseurl + "/index.php/Manage_ticket/filter_ticket_details";
     $.post(url, {cat_id: cat_id, severity_id: severity_id, status_id: status_id}, function (data) {
         if (cat_id != '') {
             $('#view_ticket_details').html(data);
@@ -2000,7 +1987,7 @@ function filter_severity_view_ticket(severity_id) {
     var cat_id = $('#category').val();
     var status_id = $('#ticket_status').val();
 
-    var url = path + "/index.php/Manage_ticket/filter_ticket_details";
+    var url = sitebaseurl + "/index.php/Manage_ticket/filter_ticket_details";
     $.post(url, {cat_id: cat_id, severity_id: severity_id, status_id: status_id}, function (data) {
         if (severity_id != '') {
             $('#view_ticket_details').html(data);
@@ -2015,7 +2002,7 @@ function filter_status_view_ticket(status_id) {
     var severity_id = $('#severity').val();
     var cat_id = $('#category').val();
 
-    var url = path + "/index.php/Manage_ticket/filter_ticket_details";
+    var url = sitebaseurl + "/index.php/Manage_ticket/filter_ticket_details";
     $.post(url, {cat_id: cat_id, severity_id: severity_id, status_id: status_id}, function (data) {
         if (status_id != '') {
             $('#view_ticket_details').html(data);
@@ -2036,7 +2023,7 @@ function get_split_tickets(ticket_id, category_id) {
 
 // Institute filter_category
 function filter_category_type(category_type_id) {
-    var url = path + "/index.php/Category/filter_category_type";
+    var url = sitebaseurl + "/index.php/Category/filter_category_type";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (category_type_id != '') {
             $('#category_details').html(data);
@@ -2049,7 +2036,7 @@ function filter_category_type(category_type_id) {
 
 // manager filter_category
 function manager_filter_category_type(category_type_id) {
-    var url = path + "/index.php/Manage_user/filter_category_type";
+    var url = sitebaseurl + "/index.php/Manage_user/filter_category_type";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (category_type_id != '') {
             $('#manager_details').html(data);
@@ -2063,7 +2050,7 @@ function manager_filter_category_type(category_type_id) {
 
 // poc filter_category
 function poc_filter_category_type(category_type_id) {
-    var url = path + "/index.php/Manage_user/poc_filter_category_type";
+    var url = sitebaseurl + "/index.php/Manage_user/poc_filter_category_type";
     $.post(url, {category_type_id: category_type_id}, function (data) {
         if (category_type_id != '') {
             $('#poc_details').html(data);
@@ -2078,7 +2065,7 @@ function poc_filter_category_type(category_type_id) {
 // Role filter_category
 function filter_category_role(cat_id) {
 
-    var url = path + "/index.php/Role/filter_category_role";
+    var url = sitebaseurl + "/index.php/Role/filter_category_role";
     $.post(url, {cat_id: cat_id}, function (data) {
         if (cat_id != '') {
             $('#role_details').html(data);
@@ -2093,7 +2080,7 @@ function filter_category_role(cat_id) {
 function filter_category_department(cat_id, type) {
     type = typeof type !== 'undefined' ? type : 0;
 
-    var url = path + "/index.php/Department/filter_category_department";
+    var url = sitebaseurl + "/index.php/Department/filter_category_department";
     $.post(url, {cat_id: cat_id, type: type}, function (data) {
         if (cat_id != '') {
             $('#department_details').html(data);
@@ -2107,7 +2094,7 @@ function filter_category_department(cat_id, type) {
 function filter_category_department_head(cat_id, type) {
     type = typeof type !== 'undefined' ? type : 0;
 
-    var url = path + "/index.php/Manage_user/filter_category_department_head";
+    var url = sitebaseurl + "/index.php/Manage_user/filter_category_department_head";
     $.post(url, {cat_id: cat_id, type: type}, function (data) {
         if (cat_id != '') {
             $('#department_details').html(data);
@@ -2122,7 +2109,7 @@ function filter_category_department_head(cat_id, type) {
 //Category filter in employee
 
 function filter_employee_department(cat_id) {
-    var url = path + "/index.php/User/filter_employee_department";
+    var url = sitebaseurl + "/index.php/User/filter_employee_department";
     $.post(url, {cat_id: cat_id}, function (data) {
         if (cat_id != '') {
             $('#user_details').html(data);
@@ -2136,7 +2123,7 @@ function filter_employee_department(cat_id) {
 //Category filter in normal user
 
 function filter_category_normal_user(cat_id) {
-    var url = path + "/index.php/Manage_user/filter_category_normal_user";
+    var url = sitebaseurl + "/index.php/Manage_user/filter_category_normal_user";
     $.post(url, {cat_id: cat_id}, function (data) {
         if (cat_id != '') {
             $('#normal_user_details').html(data);
@@ -2150,7 +2137,7 @@ function filter_category_normal_user(cat_id) {
 //Category filter in external user
 
 function filter_category_external_user(cat_id) {
-    var url = path + "/index.php/Manage_user/filter_category_external_user";
+    var url = sitebaseurl + "/index.php/Manage_user/filter_category_external_user";
     $.post(url, {cat_id: cat_id}, function (data) {
         if (cat_id != '') {
             $('#normal_user_details').html(data);
@@ -2163,7 +2150,7 @@ function filter_category_external_user(cat_id) {
 
 function filter_department_employee(department_id) {
 
-    var url = path + "/index.php/User/filter_employee_department";
+    var url = sitebaseurl + "/index.php/User/filter_employee_department";
     $.post(url, {department_id: department_id}, function (data) {
         if (data != '') {
             $('#user_details').html(data);
@@ -2178,7 +2165,7 @@ function filter_department_employee(department_id) {
 function filter_department(department_id, type) {
     type = typeof type !== 'undefined' ? type : 0;
 
-    var url = path + "/index.php/Department/filter_category_department";
+    var url = sitebaseurl + "/index.php/Department/filter_category_department";
     $.post(url, {department_id: department_id, type: type}, function (data) {
         if (data != '') {
             $('#department_details').html(data);
@@ -2192,7 +2179,7 @@ function filter_department(department_id, type) {
 function filter_department_head(department_id, type) {
     type = typeof type !== 'undefined' ? type : 0;
 
-    var url = path + "/index.php/Manage_user/filter_category_department_head";
+    var url = sitebaseurl + "/index.php/Manage_user/filter_category_department_head";
     $.post(url, {department_id: department_id, type: type}, function (data) {
         if (data != '') {
             $('#department_details').html(data);
@@ -2206,7 +2193,7 @@ function filter_department_head(department_id, type) {
 // function role mapping filters
 
 function filter_category_fn_role(category_id) {
-    var url = path + "/index.php/Function_role_mapping/filter_category_fn_role";
+    var url = sitebaseurl + "/index.php/Function_role_mapping/filter_category_fn_role";
     $.post(url, {category_id: category_id}, function (data) {
         if (category_id != '') {
             $('#fn_role_details').html(data);
@@ -2236,7 +2223,7 @@ function cc_mail_box() {
 function mailboxviewpopup(id) {
     popupcontent_ajax('<div class="image_loader" style=""></div>');
 
-    var url = path + "/index.php/Mail_box/view_mail_box_inbox_detail";
+    var url = sitebaseurl + "/index.php/Mail_box/view_mail_box_inbox_detail";
     $.post(url, {id: id}, function (data) {
 
         if (data != '') {
@@ -2265,7 +2252,7 @@ jQuery(function ($) {
 // });
 
 function forgetpasswordpopup() {
-    var url = path + "/index.php/Manage_ticket/forgetpassword";
+    var url = sitebaseurl + "/index.php/Manage_ticket/forgetpassword";
     $.post(url, {}, function (data) {
         if (data != '') {
             popupcontent_injection3(data);
@@ -2303,11 +2290,7 @@ jQuery(function ($) {
 });
 
 function unread_email() {
-
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Dashboard/get_unread_email";
+    var url = sitebaseurl + "/index.php/Dashboard/get_unread_email";
     $.post(url, {}, function (data) {
 
         if (data != '') {
@@ -2322,11 +2305,7 @@ function unread_email() {
 }
 
 function unread_notification() {
-
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Dashboard/get_unread_notification";
+    var url = sitebaseurl + "/index.php/Dashboard/get_unread_notification";
     $.post(url, {}, function (data) {
 
         if (data != '') {
@@ -2341,10 +2320,7 @@ function unread_notification() {
 }
 
 function draft_mail(draft_mail_id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Manage_ticket/get_draft_mail";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_draft_mail";
     $.post(url, {draft_mail_id: draft_mail_id}, function (data) {
 
     });
@@ -2352,10 +2328,7 @@ function draft_mail(draft_mail_id) {
 
 function mail_template(mail_id) {
     var ticket_id = document.getElementById("email_ticket_id").value;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Manage_ticket/get_mail_templates";
+    var url = sitebaseurl + "/index.php/Manage_ticket/get_mail_templates";
     $.post(url, {mail_id: mail_id, ticket_id: ticket_id}, function (data) {
         if (data != '') {
             $('#mail_templates_disp').html(data);
@@ -2503,10 +2476,7 @@ function show_create_upload_div() {
 
 
 function setcategoryid(category_id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Registration/department_registration";
+    var url = sitebaseurl + "/index.php/Registration/department_registration";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != '') {
             window.location.href = url;
@@ -2568,10 +2538,7 @@ function validatenumber(value) {
 function checkcategory(value) {
     var category = value;
     var expression = /^[0-9A-Za-z_ ,-]+$/;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Category/check_category";
+    var url = sitebaseurl + "/index.php/Category/check_category";
     $.post(url, {category: category}, function (data) {
         if (data != 1) {
             $('#error_category').html('');
@@ -2609,10 +2576,7 @@ function requireddaysnumber(value) {
 function addexternalemployee() {
     // var email = document.getElementsByClassName('escalation_email').value;
     var category = document.getElementById('category').value;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Department_escalation/addexternalemployee";
+    var url = sitebaseurl + "/index.php/Department_escalation/addexternalemployee";
     $.post(url, {category: category}, function (data) {
         if (data != '') {
             popupcontent_injection(data);
@@ -2653,10 +2617,8 @@ function notcomplete() {
 // }
 
 function chechpocmanager() {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    base_url = path + "/index.php/Registration/department_head_registration";
+
+    base_url = sitebaseurl + "/index.php/Registration/department_head_registration";
     var poc = document.getElementById("poc").value;
     var manager = document.getElementById("manager").value;
     if ((poc && manager) == '') {
@@ -2684,10 +2646,7 @@ function checkdepartment(value) {
     var category = document.getElementById("category").value;
 
     var expression = /^[0-9A-Za-z_ ,-]+$/;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Department/check_department";
+    var url = sitebaseurl + "/index.php/Department/check_department";
     $.post(url, {department: department, category: category}, function (data) {
         if (data != 1) {
             $('#error_department').html('');
@@ -2712,10 +2671,7 @@ function checkdepartmentcode(value) {
     var department_code = value;
     var category = document.getElementById("category").value;
     var expression = /^[0-9A-Za-z_ ,-]+$/;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Department/check_department_code";
+    var url = sitebaseurl + "/index.php/Department/check_department_code";
     $.post(url, {department_code: department_code, category: category}, function (data) {
         if (data != 1) {
 
@@ -2742,10 +2698,7 @@ function checkdepartmentedit(value) {
     var department_id = document.getElementById("id").value;
     var category = document.getElementById("category").value;
     var expression = /^[0-9A-Za-z_ ,-]+$/;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Department/check_department_edit";
+    var url = sitebaseurl + "/index.php/Department/check_department_edit";
     $.post(url, {
         department: department,
         category: category,
@@ -2775,10 +2728,7 @@ function checkdepartmentcodeedit(value) {
     var department_id = document.getElementById("id").value;
     var category = document.getElementById("category").value;
     var expression = /^[0-9A-Za-z_ ,-]+$/;
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Department/check_department_code_edit";
+    var url = sitebaseurl + "/index.php/Department/check_department_code_edit";
     $.post(url, {
         department_code: department_code,
         category: category,
@@ -2808,7 +2758,7 @@ jQuery(function ($) {
     $('body').on('click', '#add_more_file_attachement', function () {
         var department_id = document.getElementById('department').value;
 
-        var url = path + "/index.php/Manage_ticket/get_more_file_attachment";
+        var url = sitebaseurl + "/index.php/Manage_ticket/get_more_file_attachment";
         $.post(url, {}, function (data) {
             if (data != '') {
                 $('#add_more_attachement').append(data);
@@ -2823,10 +2773,7 @@ jQuery(function ($) {
 
 
 function get_ticket_details(id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Manage_ticket/ticket_more_details";
+    var url = sitebaseurl + "/index.php/Manage_ticket/ticket_more_details";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('.ticket_details').attr('data-html', true);
@@ -2853,10 +2800,7 @@ function loadFunction() {
 }
 
 function getdetailedmail(id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Manage_ticket/maildetaildview";
+    var url = sitebaseurl + "/index.php/Manage_ticket/maildetaildview";
     $.post(url, {id: id}, function (data) {
         if (data != '') {
             $('#maildetaildview').html(data);
@@ -2879,11 +2823,7 @@ function hidetheside() {
 
 function checkcategoryadmin(category_id) 
 {
-
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Category/check_category_admin";
+    var url = sitebaseurl + "/index.php/Category/check_category_admin";
     $.post(url, {category_id: category_id}, function (data) {
         if (data != 1) 
         {
@@ -2911,11 +2851,7 @@ function validateEmail(email) {
 
 function upload_institute_employee_reg_details() {
 
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-
-    var url = path + "/index.php/Registration/upload_institute_employee_details";
+    var url = sitebaseurl + "/index.php/Registration/upload_institute_employee_details";
     $.post(url, {}, function (data) {
         if (data != '') {
             $('#bulk_upload_data').html(data);
@@ -2941,7 +2877,7 @@ $(document).ready(function () {
 
 function get_emp_dept(user_id)
 {
-    var url = path + "/index.php/User/get_emp_dept";
+    var url = sitebaseurl + "/index.php/User/get_emp_dept";
     $.post(url, {user_id: user_id}, function (data) {
         if (data != '') {
             // $('#' + ticket_id).attr('data-html', true);
@@ -2964,10 +2900,7 @@ function disp_lablel_heading(label)
 var timer = 0;
 function auto_logout() {
 
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    var url = path + "/index.php/Logout";
+    var url = sitebaseurl + "/index.php/Logout";
     // this function will redirect the user to the logout script
     window.location = url;
 }
@@ -3014,7 +2947,7 @@ function get_all_departments(category_id)
     if(category_id !='')
     {
         $('#department_select_cat_id').attr('value', category_id);
-        var url = path + "/index.php/User/get_all_departments";
+        var url = sitebaseurl + "/index.php/User/get_all_departments";
         $.post(url, {category_id: category_id}, function (data) {
             if (data != '') {
                 $('.department_details').html(data);
@@ -3581,11 +3514,7 @@ $(document).ready(function () {
             });
   
                 var emails = $('[data-name="employee_email"]').serialize();
-                var pathstring = String(window.location);
-                var patharray = pathstring.split("/");
-                var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-                // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-                var url = path + "/index.php/Guest/check_guest_email";
+                var url = sitebaseurl + "/index.php/Guest/check_guest_email";
                 $.post(url, {email: emails}, function (data) {
                     var data = JSON.parse(data);
                     $('.check_fields_email').each(function () {
@@ -3617,11 +3546,7 @@ $(document).ready(function () {
 
 function checkguestemail(email)
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Guest/check_guest_email";
+    var url = sitebaseurl + "/index.php/Guest/check_guest_email";
     $.post(url, {email: email}, function (data) {
         if (data == 1) 
         {
@@ -3640,11 +3565,7 @@ function checkguestemail(email)
 
 function checkmobile(mobile)
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Guest/check_mobile";
+    var url = sitebaseurl + "/index.php/Guest/check_mobile";
     $.post(url, {mobile: mobile}, function (data) {
         if (data == 1) 
         {
@@ -3673,12 +3594,8 @@ function get_transport_value(input_value)
 }
 
 function upload_employee_reg_details() {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
 
-    var url = path + "/index.php/Guest/upload_guest_details";
+    var url = sitebaseurl + "/index.php/Guest/upload_guest_details";
     $.post(url, {}, function (data) {
         if (data != '') {
             $('#bulk_upload_data').html(data);
@@ -3691,12 +3608,8 @@ function upload_employee_reg_details() {
 
 function upload_vendor_details(id) { 
     var vendor_id = $("#vendor_id").val();
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
 
-    var url = path + "/index.php/Vendor/upload_vendor_details";
+    var url = sitebaseurl + "/index.php/Vendor/upload_vendor_details";
     $.post(url, {vendor_id:vendor_id}, function (data) {
         if (data != '') {
             $('#bulk_vendor_upload_data').html(data);
@@ -3710,12 +3623,8 @@ function upload_vendor_details(id) {
 function get_enquiries_popup()
 {
     var enquiry_id = $("#enquiry_id").val();
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-    var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
 
-    var url = path + "/index.php/Guest/add_enquires_popup";
+    var url = sitebaseurl + "/index.php/Guest/add_enquires_popup";
     $.post(url, {enquiry_id:enquiry_id}, function (data) {
         if (data != '') {
             $('#add_enquires_popup_data').html(data);
@@ -3729,10 +3638,6 @@ function get_enquiries_popup()
 function get_enquiries_edit_popup(targetData)
 {
     var guest_enquiry_table_id = targetData.getAttribute('value');
-    ///var pathstring = String(window.location);
-    //var patharray = pathstring.split("/");
-    //var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
 
     var url = sitebaseurl + "/index.php/Guest/edit_enquires_popup";
     //alert(guest_enquiry_table_id);
@@ -3747,11 +3652,8 @@ function get_enquiries_edit_popup(targetData)
 }
 
 function crmeditpopup(user_id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_crm";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_crm";
     $.post(url, {user_id: user_id}, function (data) {
         if (data != '') { 
             $('#edit_employee_data').html(data);
@@ -3762,11 +3664,8 @@ function crmeditpopup(user_id) {
     });
 }
 function locationeditpopup(id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_location";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_location";
     $.post(url, {id: id}, function (data) {
         if (data != '') { 
             $('#edit_employee_data').html(data);
@@ -3778,11 +3677,8 @@ function locationeditpopup(id) {
 }
 
 function referenceeditpopup(id) {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_reference";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_reference";
     $.post(url, {id: id}, function (data) {
         if (data != '') { 
             $('#edit_reference_data').html(data);
@@ -3797,10 +3693,7 @@ function get_edit_accommodtion(targetData)
 {
     
     var trid = targetData.getAttribute('value'); // table row ID 
-   // var pathstring = String(window.location);
-    //var patharray = pathstring.split("/");
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+
     var url = sitebaseurl + "/index.php/Vendor/edit_accommodation";
     $.post(url, {trid: trid}, function (data) {
         if (data != '') { 
@@ -3833,11 +3726,8 @@ function get_pending_edit(targetData)
 //Edit vendor type popup
 function vendortypepopup(id) 
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_vendor_type";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_vendor_type";
     $.post(url, {id: id}, function (data) {
         if (data != '') { 
             $('#edit_vendor_data').html(data);
@@ -3850,11 +3740,8 @@ function vendortypepopup(id)
 
 function vehicletypepopup(id) 
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    // var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_vehicle";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_vehicle";
     $.post(url, {id: id}, function (data) {
         if (data != '') { 
             $('#edit_vehicle_data').html(data);
@@ -3866,11 +3753,8 @@ function vehicletypepopup(id)
 }
 function categorypopup(id) 
 {
-    var pathstring = String(window.location);
-    var patharray = pathstring.split("/");
-     var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3];
-    //  var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-    var url = path + "/index.php/Vendor/edit_category_type";
+
+    var url = sitebaseurl + "/index.php/Vendor/edit_category_type";
     $.post(url, {id: id}, function (data) {
         if (data != '') { 
             $('#edit_category_data').html(data);
