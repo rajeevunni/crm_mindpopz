@@ -112,7 +112,6 @@
                                <div class="form-group pull-right">
                                     <button type="submit" name="filter_accomodation" class="btn btn-success">Search</button>
                                     <input type="submit" class="btn btn-primary" value="Export as Excel" name="download_excel" >
-                                    
                                 </div>
                             </div>  
                         </form>
@@ -255,7 +254,7 @@
                             $action = 'style="display:block"';
                         }
                         ?>
-                         <table id="vendor_datatbale" style="font-size:12px;" class="table table-striped dataTable no-footer" 
+                         <table id="vendor_datatbale2" style="font-size:12px;" class="table table-striped dataTable no-footer" 
                         cellspacing="0" width="100%">
                             <thead>
                                 <?php 
@@ -281,13 +280,13 @@
                                 <th style="font-size:11px;">Extra Child</th>
                                 <th style="font-size:11px;">Currency</th>
                                 <th style="font-size:11px;">A/C Status</th>
-                                <?php if($this->session->userdata('user_type')==1) 
+                                <!--<?php if($this->session->userdata('user_type')==1) 
                                 {
                                     ?>
                                     <th style="font-size:11px;">Action</th>
                                     <?php
                                 }
-                                ?>
+                                ?>-->
                             </tr>
                             </thead>
                             <tbody>
@@ -295,7 +294,7 @@
                                     $i = 1;
                                 foreach ($filter_accomodation_details as $details) {
                                 ?>
-                                <tr value="<?php echo $details['id']; ?>" data-toggle="modal" data-target=".edit_accommodation" onclick="get_edit_accommodtion(this)" data-id="id">
+                                <tr value="<?php echo $details['id']; ?>">
                                 <td><?php echo $i; ?></td>
                                 <td><?php echo $details['vendor_name']; ?></td>
                                 <td><?php echo date('d-M-Y', strtotime($details['start_date'])); ?></td>
@@ -309,7 +308,7 @@
                                 <td><?php echo $details['extra_child']; ?></td>
                                 <td><?php echo $details['currency']; ?></td>
                                 <td><?php echo $details['ac']; ?></td>
-                                <?php if($this->session->userdata('user_type')==1) 
+                                <!--<?php if($this->session->userdata('user_type')==1) 
                                 {
                                     ?>
                                     <td>
@@ -319,7 +318,7 @@
                                     </td>
                                     <?php
                                 }
-                                ?>
+                                ?>-->
                             </tr>
                                 <?php
                                     $i++;

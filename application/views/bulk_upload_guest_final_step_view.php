@@ -22,7 +22,7 @@ $this->load->view('includes/head');
                 <script>
                 $(document).ready(function(){
                   $('#bulkupload').dataTable( {
-                      "pageLength": 50
+                      "pageLength": 100
                   } );
                 } );
                 </script>

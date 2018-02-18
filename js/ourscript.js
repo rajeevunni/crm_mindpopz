@@ -1,13 +1,14 @@
 
-var sitebaseurl = "http://localhost/crm-mindpopz/crm_mindpopz";
+var sitebaseurl = "http://www.plan.mindpopzholidays.com/crm-mindpopz";
 $(document).ready(function(){
     
     var mytable=$('#our_datatable').DataTable({
         "oLanguage": {
             "sSearch": "Filter Data"
           },
-          "iDisplayLength": -1,
+          "iDisplayLength": 50,
           "sPaginationType": "full_numbers",
+          "aaSorting": []
     });
 
     $('#our_datatable tbody').on( 'dblclick', 'tr', function (event) {
@@ -24,6 +25,37 @@ $(document).ready(function(){
         document.location = "add_guest_enquiry_view/" + id[1];
 
     } );
+    
+     var mytable2=$('#our_datatable2').DataTable({
+        "oLanguage": {
+            "sSearch": "Filter Data"
+          },
+          "iDisplayLength": 10,
+          "sPaginationType": "simple_numbers",
+    });
+    
+       $('#our_datatable2 tbody').on( 'dblclick', 'tr', function (event) {
+        var id = $(this).attr('value');   
+        console.log("Guest/add_guest_enquiry_view/" + id)        
+        document.location = "Guest/add_guest_enquiry_view/" + id;
+
+        } );
+    
+    var mytable3=$('#our_datatable3').DataTable({
+        "oLanguage": {
+            "sSearch": "Filter Data"
+          },
+          "iDisplayLength": 10,
+          "sPaginationType": "simple_numbers",
+    });
+
+       $('#our_datatable3 tbody').on( 'dblclick', 'tr', function (event) {
+        var id = $(this).attr('value');   
+        console.log("Guest/add_guest_enquiry_view/" + id)        
+        document.location = "Guest/add_guest_enquiry_view/" + id;
+
+        } );
+    
      var mytable1=$('#vendor_datatbale').DataTable();
      $('#vendor_datatbale tbody').on( 'dblclick', 'tr', function (event) {
       

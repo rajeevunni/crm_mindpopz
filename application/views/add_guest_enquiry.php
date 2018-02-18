@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Email</label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" value="" autocomplete="off"  onkeyup="checkguestemail(this.value)" class="form-control has-feedback-left" name="guest_email" id="guest_email" placeholder="Enter Email ID">
+                                    <input type="text" value="" autocomplete="off"  onblur="checkguestemail(this.value)" class="form-control has-feedback-left" name="guest_email" id="guest_email" placeholder="Enter Email ID">
                                     <span class="fa fa-at form-control-feedback left" aria-hidden="true"></span>
                                     <div id="error_guest_email" class="val__msgbx"></div>
                                 </div>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Mobile</label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="text" value="" autocomplete="off"      onkeyup="checkmobile(this.value)" class="form-control has-feedback-left" name="guest_mobile" id="guest_mobile" placeholder="Enter mobile number">
+                                    <input type="text" value="" autocomplete="off"  onblur="checkmobile(this.value)" class="form-control has-feedback-left" name="guest_mobile" id="guest_mobile" placeholder="Enter mobile number">
                                     <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                                     <div id="error_guest_mobile" class="val__msgbx"></div>
                                 </div>
@@ -71,6 +71,13 @@
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <input type="text" value="" class="form-control" name="state" id="state"  placeholder="Enter State">
                                     <div id="error_state" class="val__msgbx"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Allow Duplicate</label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                   <input type="checkbox" id="duplallow" name="duplallow" onclick="allowduplicate()">
+
                                 </div>
                             </div>
                         </div>  

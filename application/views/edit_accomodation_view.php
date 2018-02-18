@@ -154,7 +154,7 @@
 
     var checkin = $('#start_datepick').datepicker({
       onRender: function(date) {
-        return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        //return date.valueOf() < now.valueOf() ? 'disabled' : '';
       }
     }).on('changeDate', function(ev) {
       if (ev.date.valueOf() > checkout.date.valueOf()) {
@@ -167,7 +167,7 @@
     }).data('datepicker');
     var checkout = $('#expected_datepick').datepicker({
       onRender: function(date) {
-        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+        //return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
       }
     }).on('changeDate', function(ev) {
       checkout.hide();

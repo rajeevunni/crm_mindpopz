@@ -325,18 +325,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Room Type</label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <select class="form-control" name="room_type" id="room_type">
-                                        <option value="">Select Room Type</option>
-                                        <?php
-                                        foreach($roomtypes as $type)
-                                        {
-                                            $selected = $type['id'] == $accom_details['room_type']?'selected':'';
-                                            ?>
-                                            <option value="<?php echo $type['id']; ?>" <?php echo $selected; ?>><?php echo $type['type']; ?></option>
-                                            <?php
-                                        } ?>
-
-                                    </select>
+                                    <input type="text" value=""  class="form-control" name="room_type" id="room_type">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -433,7 +422,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo date('d-M-Y', strtotime($details['start_date'])); ?></td>
                                     <td><?php echo date('d-M-Y', strtotime($details['end_date'])); ?></td>
-                                    <td><?php echo $details['type']; ?></td>
+                                    <td><?php echo $details['room_type']; ?></td>
                                     <td><?php echo $details['occupents']; ?></td>
                                     <td><?php echo $details['food_plan']; ?></td>
                                     <td><?php echo $details['rack_rate']; ?></td>
@@ -476,14 +465,14 @@
 	</div>
 </div>
 
-<!--script>
+<script>
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
     var checkin = $('#start_datepick').datepicker({
-      //onRender: function(date) {
-        //return date.valueOf() < now.valueOf() ? 'disabled' : '';
-      //}
+      onRender: function(date) {
+        return date.valueOf() < now.valueOf() ? 'disabled' : '';
+      }
     }).on('changeDate', function(ev) {
       if (ev.date.valueOf() > checkout.date.valueOf()) {
         var newDate = new Date(ev.date)
@@ -494,13 +483,13 @@
       $('#expected_datepick')[0].focus();
     }).data('datepicker');
     var checkout = $('#expected_datepick').datepicker({
-      //onRender: function(date) {
-        //return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-      //}
+      onRender: function(date) {
+        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+      }
     }).on('changeDate', function(ev) {
       checkout.hide();
     }).data('datepicker');
-</script-->
+</script>
 <?php 
 	$this->load->view('includes/footer');
 ?>

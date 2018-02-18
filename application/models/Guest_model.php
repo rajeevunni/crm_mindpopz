@@ -19,7 +19,7 @@ class Guest_model extends CI_Model
 										FROM guest_enquiry as ge
 										LEFT JOIN guest_enquiry_master as gem
 										ON gem.guest_enquiry_id = ge.id
-										WHERE enquiry_status NOT IN ('BOOKED','CANCELLED','WRONG LEAD')"
+										WHERE enquiry_status NOT IN ('BOOKED','CANCELLED','WRONG LEAD') ORDER BY CONVERT(guest_details_ref,UNSIGNED INTEGER) DESC"
 								);
 		$return_array = $query->result_array();
 		return $return_array;	
@@ -94,7 +94,7 @@ class Guest_model extends CI_Model
 		$query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
 										FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm
 											".$condition."
-											ORDER BY id DESC"
+											 ORDER BY CONVERT(guest_details_ref,UNSIGNED INTEGER) DESC"
 									);
 		$return_array = $query->result_array();
 		return $return_array;
@@ -214,7 +214,7 @@ class Guest_model extends CI_Model
 		$query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
 										FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm 
 											".$condition."
-											ORDER BY id DESC"
+											 ORDER BY CONVERT(guest_details_ref,UNSIGNED INTEGER) DESC"
 									);
 		$return_array = $query->result_array();
 		 //echo $this->db->last_query();
@@ -268,6 +268,24 @@ class Guest_model extends CI_Model
 										ORDER BY type_name ASC"
 								);
 		$return_array = $query->result_array();
+		return $return_array;	
+	}
+	function getlast_guest_details_ref()
+	{
+		$query = $this->db->query("select COALESCE(max(CONVERT(guest_details_ref,UNSIGNED INTEGER)), 100000)+1 							 as guest_details_ref
+									 from guest_enquiry 
+									 WHERE guest_details_ref !=''"
+								);
+		$return_array = $query->row_array();
+		return $return_array;	
+	}
+	function getlast_guest_enquiry_ref()
+	{
+		$query = $this->db->query("select COALESCE(max(CONVERT(guest_enquiry_ref,UNSIGNED INTEGER)), 2000000000)+1 							 as guest_enquiry_ref
+									 from guest_enquiry 
+									 WHERE guest_enquiry_ref !=''"
+								);
+		$return_array = $query->row_array();
 		return $return_array;	
 	}
 }

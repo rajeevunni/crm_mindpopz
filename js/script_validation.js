@@ -20,39 +20,48 @@ function add_guest_enquiry_validation() {
     }
 
     else {
-        var email =  $('#guest_email').val();
-        var pathstring = String(window.location);
-        var patharray = pathstring.split("/");
-        var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
-        var url = path + "/Guest/check_email";
-        $.post(url, {email: email}, function (data) {
-            if (data == 1) 
-            {
-                $('#error_guest_email').html("Email Already Exists");
-                $('#add_guest_enquiry').attr("disabled", "disabled");
-            }
-            else 
-            {
-                $('#error_guest_email').html("");
-                $('#add_guest_enquiry').removeAttr("disabled");
-                return true;
-            }
-        });
-        var mobile = $('#guest_mobile').val();
-        var url = path + "/Guest/check_mobile";
-        $.post(url, {mobile: mobile}, function (data) {
-            if (data == 1) 
-            {
-                $('#error_guest_mobile').html("Mobile Number Already Exists");
-                $('#add_guest_enquiry').attr("disabled", "disabled");
-            }
-            else 
-            {
-                $('#error_guest_mobile').html("");
-                $('#add_guest_enquiry').removeAttr("disabled");
-                return true;
-            }
-        });
+        var allowdupli = $('#duplallow').prop("checked");
+        if(allowdupli===true)   {
+            $('#error_guest_mobile').html("");
+            $('#add_guest_enquiry').removeAttr("disabled");
+            $('#error_guest_email').html("");
+            $('#add_guest_enquiry').removeAttr("disabled");
+            return true;
+        }else{
+            var email =  $('#guest_email').val();
+            var pathstring = String(window.location);
+            var patharray = pathstring.split("/");
+            var path = patharray[0] + '//' + patharray[2] + '/' + patharray[3] + '/' + patharray[4];
+            var url = path + "/Guest/check_email";
+            $.post(url, {email: email}, function (data) {
+                if (data == 1) 
+                {
+                    $('#error_guest_email').html("Email Already Exists");
+                    $('#add_guest_enquiry').attr("disabled", "disabled");
+                }
+                else 
+                {
+                    $('#error_guest_email').html("");
+                    $('#add_guest_enquiry').removeAttr("disabled");
+                    return true;
+                }
+            });
+            var mobile = $('#guest_mobile').val();
+            var url = path + "/Guest/check_mobile";
+            $.post(url, {mobile: mobile}, function (data) {
+                if (data == 1) 
+                {
+                    $('#error_guest_mobile').html("Mobile Number Already Exists");
+                    $('#add_guest_enquiry').attr("disabled", "disabled");
+                }
+                else 
+                {
+                    $('#error_guest_mobile').html("");
+                    $('#add_guest_enquiry').removeAttr("disabled");
+                    return true;
+                }
+            });
+        }
         return false;
     }
 }

@@ -59,7 +59,7 @@ class Dashboard extends CI_Controller
             $date = $res['y'].'-'.$res['m'];
             $crm_data = $this->Generalsettings_model->get_crm_wise_barchart($res['y'], $res['m']);
             //$json_array[$i]['y'] =date('M Y', strtotime($res['y'].'-'.$res['m']));
-            $json_array[$i]['y'] =date('Y-m', strtotime($res['y'].'-'.$res['m']));
+            $json_array[$i]['month'] =date('Y-m', strtotime($res['y'].'-'.$res['m']));
              //echo "<pre>"; print_r($crm_data);//die;
              //echo "<pre>"; print_r($json_array);die;
             foreach($crm_data as $crm) { 
@@ -77,7 +77,7 @@ class Dashboard extends CI_Controller
         $show_data['CrmData'] = json_encode($json_array);
         $show_data['CrmDatayKeys'] = json_encode($json_arrayykeys);
         $show_data['CrmDataName'] = json_encode($json_arrayname);
-        //echo "<pre>"; print_r($show_data['CrmDatayKeys']); die;
+        //echo "<pre>"; print_r($show_data['CrmDataName']); die;
 
         $show_data['name'] = $this->session->userdata('user_name');
         $show_data['propic'] = $this->session->userdata('profile_pic');

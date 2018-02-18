@@ -96,6 +96,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jspdf/jspdf.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jspdf/libs/base64.js"></script>
 
+
          
 
         

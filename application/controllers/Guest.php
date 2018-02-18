@@ -64,11 +64,11 @@ class Guest extends CI_Controller
 
 			if($result>0)
 			{
-				$guest_uniq = 10000;
-				$enq_uniq = 200000000;
+				$guest_uniq = $this->Guest_model->getlast_guest_details_ref();
+				$enq_uniq = $this->Guest_model->getlast_guest_enquiry_ref();
 				$info_data = array();
-				$info_data['guest_details_ref'] = $guest_uniq.$result;
-				$info_data['guest_enquiry_ref'] = $enq_uniq.$result;
+				$info_data['guest_details_ref'] = $guest_uniq['guest_details_ref'];
+				$info_data['guest_enquiry_ref'] = $enq_uniq['guest_enquiry_ref'];
 				$this->Guest_model->update_guest_enquiry($info_data, $result);
 				$this->success('<p class="success">Guest enquiry has been added successfully</p>');			// successfull mesage. 
 				redirect('index.php/Guest');
@@ -322,7 +322,7 @@ class Guest extends CI_Controller
 			}
 			if($this->input->get('enquiry_dates'))
             {
-                array_push($condition_array_download," enquiry_date ='".date('d-m-Y',strtotime($this->input->get('enquiry_dates')))."'");
+                array_push($condition_array_download," enquiry_date ='".date('Y-m-d',strtotime($this->input->get('enquiry_dates')))."'");
 			}
 			if($this->input->get('enquiry_reference_no'))
             {
@@ -384,7 +384,7 @@ class Guest extends CI_Controller
 			}
 			if($this->input->get('enquiry_dates'))
             {
-                array_push($condition_array," enquiry_date ='".date('d-m-Y',strtotime($this->input->get('enquiry_dates')))."'");
+                array_push($condition_array," enquiry_date ='".date('Y-m-d',strtotime($this->input->get('enquiry_dates')))."'");
 			}
 			if($this->input->get('enquiry_reference_no'))
             {
@@ -605,7 +605,7 @@ class Guest extends CI_Controller
             {
             	$crmid= $this->Guest_model->getcrmidfromname($emp['enquiry_crm']);
             	if(empty($crmid['id'])){
-            		$this->error('<p class="error">COuld not find CRM with this name</p>');
+            		$this->error('<p class="error">Could not find CRM with this name</p>');
 		            redirect(base_url().'index.php/Guest/search_guest_enquiry');
 		            exit;
             	}

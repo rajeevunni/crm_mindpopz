@@ -47,8 +47,8 @@ $this->load->view('includes/head');
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                <div style="height:300px;">
-                        <table id="callback" class="table table-striped table-no-spacing " cellspacing="0" width="100%">
+                <div style="height:auto;">
+                        <table id="our_datatable2" class="table dt-responsive table-striped table-no-spacing " cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <!-- <th style="width: 30px;">No.</th> -->
@@ -65,7 +65,7 @@ $this->load->view('includes/head');
                                     //$i = 1;
                                     foreach ($pending_call_back as $call_back) {
                                         ?>
-                                        <tr value="<?php echo $call_back['id']; ?>" onclick="get_callback_edit(this)">
+                                        <tr value="<?php echo $call_back['id']; ?>" >
                                             <!-- <td></td> -->
                                             <td><?php echo $call_back['guest_name'];?></td>
                                             <td><?php echo date('d-M-Y', strtotime($call_back['enquiry_date']));?></td>  
@@ -91,8 +91,8 @@ $this->load->view('includes/head');
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
-                    <div style="height:300px;">
-                        <table id="pending_enq" class="table table-striped table-no-spacing " cellspacing="0" width="100%">
+                    <div style="height:auto;">
+                        <table id="our_datatable3" class="table dt-responsive table-striped table-no-spacing " cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <!-- <th style="width: 30px;">No.</th> -->
@@ -107,7 +107,7 @@ $this->load->view('includes/head');
                                     //$i = 1;
                                     foreach ($all_pending_guest_details as $details) {
                                         ?>
-                                        <tr value="<?php echo $details['enqid']; ?>" onclick="get_pending_edit(this)">
+                                        <tr value="<?php echo $details['enqid']; ?>">
                                             <!-- <td></td> -->
                                             <td><?php echo $details['guest_enquiry_ref']; ?></td>
                                             <td><?php echo $details['guest_name']; ?></td>  
@@ -143,17 +143,36 @@ $this->load->view('includes/head');
         resize: true,
         redraw: true
     });
+
+
  Morris.Line({
   element: 'crm_wise',
   data: <?php echo $CrmData; ?>,
-  xkey: 'y',
+  xkey: 'month',
   ykeys: <?php echo $CrmDatayKeys; ?>,
-  labels: <?php echo $CrmDataName; ?>
+  labels: <?php echo $CrmDataName; ?>, 
+  xLabels: 'month',
+  xLabelAngle: 45,
+  pointSize: 2,
+    lineWidth: 1,
+  xLabelFormat: function (x) {
+        var IndexToMonth = [ "Jan", "Feb", "Mär", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+        var month = IndexToMonth[ x.getMonth() ];
+        var year = x.getFullYear();
+        return year + ' ' + month;
+    },
+    dateFormat: function (x) {
+        var IndexToMonth = [ "Jan", "Feb", "Mär", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+        var month = IndexToMonth[ new Date(x).getMonth() ];
+        var year = new Date(x).getFullYear();
+        return year + ' ' + month;
+    },
+    
+
 });
 
 
 </script>
-
 <?php 
 $this->load->view('includes/footer');
 ?>

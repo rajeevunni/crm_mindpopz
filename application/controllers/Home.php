@@ -94,7 +94,7 @@ class Home extends CI_Controller {
 
         $show_data = array();
         $show_data['error'] = $this->session->userdata('error');
-        $show_data['success'] = $this->session->userdata('success'); 
+        $show_data['success'] = $this->session->userdata('success');
         $this->clearmessage();
         //----------------------------------- forget password -----------------------//
         if (isset($_POST['forgetpassword'])) {

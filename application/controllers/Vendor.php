@@ -369,8 +369,12 @@ class Vendor extends CI_Controller
 				(end_date BETWEEN '".$START_QUERY."' AND '".$END_QUERY."') OR 
 				(start_date <= '".$START_QUERY."' AND end_date >= '".$END_QUERY."') )");
 			}
-	   } 
-	   $show_data['filter_accomodation_details'] = $this->Vendor_model->filter_accomodation_details($condition_array);
+			 $show_data['filter_accomodation_details'] = $this->Vendor_model->filter_accomodation_details($condition_array);
+	   }else{
+	   	$show_data['filter_accomodation_details'] = array();
+	   }
+	  
+	   //$show_data['filter_accomodation_details'] =array();
 	   // echo "<pre>"; print_r($this->Vendor_model->filter_accomodation_details($condition_array)); die;
 		$condition = "";
 		$show_data['all_accommodation_details'] = $this->Vendor_model->getall_accommodations($condition);
