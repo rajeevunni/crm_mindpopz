@@ -1,4 +1,4 @@
-var sitebaseurl = "http://www.plan.mindpopzholidays.com/crm-mindpopz";
+var sitebaseurl = "http://localhost/crm-mindpopz/crm_mindpopz";
 jQuery(function ($) {
     var name = /^[a-zA-Z]{3,15}$/i;
     var email = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
@@ -38,6 +38,14 @@ jQuery(function ($) {
         }
     );
     $('input[name="guest_end_date"]').datepicker(
+        {
+            singleDatePicker: !0,
+            cancelLabel: 'Clear',
+            minDate: moment(),
+            singleClasses: "picker_4"
+        }
+    );
+	$('input[name="booking_date"]').datepicker(
         {
             singleDatePicker: !0,
             cancelLabel: 'Clear',

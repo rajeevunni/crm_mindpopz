@@ -245,17 +245,17 @@ else{
                                     <?php
                                     if($filled_data['booking_date'] != 0)
                                     {
-                                        $val = date('d-M-Y', strtotime($filled_data['booking_date']));
+                                        $val = date('d-m-Y', strtotime($filled_data['booking_date']));
                                     }
                                     else
                                     {
-                                        $val = date("d-M-Y");
+                                        $val = date("d-m-Y");
                                     }
                                     ?>
                                     <div class="form-group" id="booked_div2" <?php echo $style_b; ?>>
                                         <label class="control-label col-md-4 col-sm-4 col-xs-12">Booking Date</label>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <input type="text" readonly value="<?php echo $val; ?>" class="form-control" name="booking_date" id="booking_date">
+                                            <input type="text" <?php echo $read; ?> value="<?php echo $val; ?>" class="form-control" name="booking_date" id="booking_date">
                                         </div>
                                     </div>
                                     <div class="form-group" id="callack_div2" <?php echo $style; ?>>

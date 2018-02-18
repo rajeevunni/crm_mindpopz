@@ -153,6 +153,9 @@ class Guest extends CI_Controller
                 $info['enquiry_reference'] = $this->input->post('enquiry_reference');
                 $info['enquiry_ext_rfn_no'] = $this->input->post('enquiry_ext_rfn_no');
                 $info['enquiry_status'] = $this->input->post('enquiry_status');
+				if($info['enquiry_status'] =='BOOKED'){
+					$info['booking_date'] = date('Y-m-d',strtotime($this->input->post('booking_date')));
+				}
                 $info['booking_amount'] = $this->input->post('booking_amount');
                 $info['call_back_date'] = $this->input->post('call_back_date');
                 $info['call_back_time'] = $this->input->post('call_back_time');
