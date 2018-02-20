@@ -290,6 +290,42 @@ class Guest extends CI_Controller
 		$this->load->view('search_guest_view',$show_data);	
 	}
 
+    function fetchGuestDetails()
+    {
+        $itemsPerPage = $_REQUEST['length'];
+        $start = $_REQUEST['start'];
+        $pagenumber = $_REQUEST['draw'];
+
+        $ordercolumn = ($_REQUEST['order'][0]['column']==0) ? 1 : $_REQUEST['order'][0]['column'];
+        $orderdir = $_REQUEST['order'][0]['dir'];
+        $searchterm = $_REQUEST['search']['value'];
+        //print_r($_REQUEST['order']);
+        $searchstr = '';
+        if($this->session->userdata('user_type')!=1)
+        {
+            $action = 'style="display:none"';
+        }
+        else{
+            $action = 'style="display:block"';
+        }
+
+        $detarr = $this->Guest_model->get_guest_details('',$searchterm," order by $ordercolumn $orderdir LIMIT $start,$itemsPerPage ");
+            $i = 1;
+            $guestdata = $detarr['data'];
+
+            foreach($guestdata as $key=>$guest){
+                $guestid=$guest['id'];
+                $guestdata[$key]['guestid'] =$guestid;
+
+                $guestdata[$key]['id'] = $start + $i;
+                $guestdata[$key]['btn'] = "<span ".$action." class=\"glyphicon glyphicon-trash action_icon delete_guest\" value=\"".$guestid."\" onclick=\"delete_enquiry(this)\"></span> ";
+                $i++;
+            }
+            $ret = array("draw"=>$pagenumber , 'recordsTotal'=>$detarr['count'],"recordsFiltered"=>$detarr['count'], 'data'=>$guestdata);
+            echo json_encode($ret);
+            exit;
+        }
+
 	function add_enquiry_details()
 	{			
 		$show_data = array();	

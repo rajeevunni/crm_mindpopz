@@ -576,6 +576,7 @@ class Vendor extends CI_Controller
 	
 	function vendor_bulkupload()
     {
+		
         $show_data = array();
         $show_data['error'] = '';
         $show_data['success'] = $this->session->userdata('success');
@@ -601,12 +602,16 @@ class Vendor extends CI_Controller
                    {
                     	break;
                    }
+				   if($upload_array[$index]['D']!=''){
+				        $room_type = $this->Vendor_model->get_room_type_id($upload_array[$index]['D']);
+	
+				   }
                    $data = array();
                    $data = array(
                         'sl_no' => $upload_array[$index]['A'],
                         'start_date' => $upload_array[$index]['B'],
                         'end_date' => $upload_array[$index]['C'],
-                        'room_type' => $upload_array[$index]['D'],
+                        'room_type' => $room_type['id'],
                         'occupants' => $upload_array[$index]['E'],
                         'food_plan' => $upload_array[$index]['F'],
 						'rack_rate' => $upload_array[$index]['G'],

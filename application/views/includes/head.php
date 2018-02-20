@@ -97,6 +97,7 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/prettify.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/script_validation.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/tableinit.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/tableExport.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/tablexport/jquery.base64.js"></script>

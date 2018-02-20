@@ -1,5 +1,4 @@
-
-var sitebaseurl = "http://www.plan.mindpopzholidays.com/crm-mindpopz";
+var sitebaseurl = "http://localhost/crm-mindpopz/crm_mindpopz";
 $(document).ready(function(){
     
     var mytable=$('#our_datatable').DataTable({

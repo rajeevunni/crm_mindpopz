@@ -66,7 +66,7 @@ class Dashboard extends CI_Controller
                 if (!in_array($crm['crmid'], $json_arrayykeys))
                 {
                         $json_arrayykeys[] = $crm['crmid'];
-                        $crmnamearr=$this->Generalsettings_model->getnamefromid($crm['crmid']);
+                        $crmnamearr = $this->Generalsettings_model->getnamefromid($crm['crmid']);
                         $json_arrayname[] = $crmnamearr['name'];
                 } 
                 $json_array[$i][$crm['crmid']]= $crm['sum'];

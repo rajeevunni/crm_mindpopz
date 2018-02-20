@@ -59,7 +59,28 @@
                 </div>
                 <br>            
                 <hr>
-                <table id="our_datatable" class="table table-striped dt-responsive nowrap table-hover"
+                <table id="datatable" class="table table-hover table-bordered CustomTable dt-responsive nowrap" style="width:100%" data-url="fetchGuestDetails" columns="guestid||id||enquiry_date||guest_details_ref||guest_name||crm_name||guest_mobile||enquiry_reference||enquiry_status||guest_email||btn" no-search-sort="0||5"  searchfields="hiddendata">
+                    <thead>
+                    <tr>
+                        <th style="display:none" class="our_datatable_id">Id</th>
+                        <th style="width:7%">Sl No</th>
+                        <th style="width:15%">Enquiry Date</th>
+                        <th style="width:23%">Guest Id</th>
+                        <th style="width:30%">Guest Name</th>
+                        <th style="width:25%">CRM</th>
+                        <th style="width:25%">Mobile</th>
+                        <th style="width:25%">Reference</th>
+                        <th style="width:25%">Status</th>
+                        <th style="width:25%">Email</th>
+                        <th style="width:25%">Action</th>
+
+                    </tr>
+                    </thead>
+
+
+                </table>
+
+                <!--table id="our_datatable" class="table table-striped dt-responsive nowrap table-hover"
                         cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -117,7 +138,7 @@
                             }
                         ?>
                     </tbody>
-                </table>
+                </table-->
             </div>
 		</div>
 		</div>

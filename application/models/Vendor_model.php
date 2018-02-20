@@ -599,7 +599,16 @@ class Vendor_model extends CI_Model
 		   $query = $this->db->delete('accommodation');
 		   return $query;
 	}
-	
+	function get_room_type_id($type)
+	{
+		$this->db->select(array('id'));
+        $this->db->from('room_type');
+        $this->db->where('type', $type);
+		$query = $this->db->get();
+		
+		return $query->row_array(); 
+		
+	}	
 
 }
 ?>

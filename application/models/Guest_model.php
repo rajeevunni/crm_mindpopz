@@ -90,15 +90,47 @@ class Guest_model extends CI_Model
     /* This function lists the guest details on the Search Guest Enquiry
         @params: condition - SQL querry for custom db querying
     */
-	function fetch_guest_details($condition=""){
-		$query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
+    function fetch_guest_details($condition=""){
+        $query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
 										FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm
 											".$condition."
 											 ORDER BY CONVERT(guest_details_ref,UNSIGNED INTEGER) DESC"
-									);
-		$return_array = $query->result_array();
-		return $return_array;
-	}
+        );
+        $return_array = $query->result_array();
+        return $return_array;
+    }
+
+
+	function get_guest_details($condition="",$searchterm=null,$datatablestr=null){
+
+		/*$query = $this->db->query("SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name
+										FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm
+											".$condition."
+											 ORDER BY CONVERT(guest_details_ref,UNSIGNED INTEGER) DESC"
+									);*/
+
+        $searchstr = '';
+
+		$qrystr = "SELECT ge.*,CONCAT(e.f_name,' ',COALESCE (l_name,'')) as crm_name FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm ".$condition." ".$searchterm .$datatablestr;
+
+        $qrycountstr = "SELECT count(1) as cnt FROM guest_enquiry ge left join employee e on e.id=ge.enquiry_crm ".$condition." ".$searchterm;
+
+        try {
+            $query = $this->db->query($qrystr);
+            $countqry = $this->db->query($qrycountstr);
+        }
+        catch (Exception $E) {
+            $msg = $E->getMessage();
+            $sts = 0;
+            $result = array('sts'=>$sts,'msg' =>$msg);
+            return $result;
+            exit;
+        }
+
+        $ret = array('sts'=>1 , 'data'=>$query->result_array() ,'count'=>$countqry->row()->cnt);
+        return $ret;
+        exit;
+    }
 	function fetch_guest_enquiries_details($condition)
 	{
 		$query = $this->db->query("SELECT *

@@ -71,7 +71,33 @@ jQuery(function ($) {
     );
     $('.enquiry_date').val();
 
-    /** View tickets data filtering */
+
+        $('table.CustomTable').each(function () {
+            var tableid = $(this).attr('id');
+            loadDataTable(tableid);
+
+
+        });
+
+    $('table.CustomTable tbody').on( 'dblclick', 'tr', function (event) {
+
+        var id= $('table.CustomTable').dataTable().fnGetData(this)['guestid'];
+
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $('table.CustomTable').dataTable().$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+        //var id = mytable.row(this).data();
+        console.log("add_guest_enquiry_view/" + id)
+        document.location = "add_guest_enquiry_view/" + id;
+
+    } );
+
+
+    // /** View tickets data filtering */
     $(document).ready(function () {
         // Setup - add a text input to each footer cell
         var datatableResponsive = $('#datatable-responsive');
@@ -88,8 +114,8 @@ jQuery(function ($) {
                     }
                 })
             }
-        });       
-      
+        });
+
 
         datatableResponsive.find('tbody').on('mouseenter', 'td', function () {
             var colIdx = table.cell(this).index().column;
